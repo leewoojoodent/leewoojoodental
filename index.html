@@ -36,7 +36,7 @@
       #intro { background-size: cover; background-position: center; }
     }
 
-    /* ✅ 중앙 로고 (인트로 전용) */
+    /* ✅ 중앙 로고 (인트로용) */
     #intro-logo {
       position: fixed;
       top: 50%;
@@ -45,10 +45,11 @@
       opacity: 0;
       z-index: 10000;
       width: 200px;
-      animation: logoIntro 3.5s cubic-bezier(0.65, 0, 0.35, 1) 5.5s forwards;
-      /* cubic-bezier → 부드럽고 자연스러운 감속 */
+      animation: logoIntro 3.5s cubic-bezier(0.65, 0, 0.35, 1) 5.5s forwards, logoShine 0.8s ease-in-out 7.5s forwards;
+      filter: drop-shadow(0 0 0px rgba(255,255,255,0));
     }
 
+    /* ✅ 로고 확대/이동 애니메이션 */
     @keyframes logoIntro {
       0% {
         transform: translate(-50%, -50%) scale(0.2);
@@ -65,6 +66,19 @@
       100% {
         transform: translate(calc(-50vw + 60px), calc(-50vh + 60px)) scale(0.45);
         opacity: 1;
+      }
+    }
+
+    /* ✅ 은은한 반짝임 효과 */
+    @keyframes logoShine {
+      0% {
+        filter: drop-shadow(0 0 0px rgba(255,255,255,0));
+      }
+      50% {
+        filter: drop-shadow(0 0 20px rgba(255,255,255,0.9));
+      }
+      100% {
+        filter: drop-shadow(0 0 0px rgba(255,255,255,0));
       }
     }
 
@@ -86,7 +100,7 @@
       height: 90px;
       width: auto;
       transition: opacity 0.3s ease;
-      opacity: 0; /* 나중에 JS로 활성화 */
+      opacity: 0;
     }
 
     nav {
@@ -177,7 +191,7 @@
   <!-- ✅ 인트로 배경 -->
   <div id="intro"></div>
 
-  <!-- ✅ 중앙 로고 (인트로용) -->
+  <!-- ✅ 중앙 로고 -->
   <img id="intro-logo" src="logo.png" alt="이우주치과 로고" />
 
   <!-- ✅ 헤더 -->
