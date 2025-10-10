@@ -1,51 +1,38 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이우주치과</title>
   <style>
+    /* 전체 기본 폰트 및 설정 */
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #111;
       background-color: #fff;
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
-    /* 🌟 인트로 화면 (배경 전체) */
+    /* 인트로 전체 화면 */
     #intro {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('intro.jpg') no-repeat center center;
-      background-size: cover;
+      inset: 0;
+      background: #f5f5f7 url('intro.jpg') no-repeat center center;
+      background-size: contain; /* 파노라마 전체 표시 */
+      z-index: 9999;
       opacity: 0;
       animation: fadeInOut 5s ease forwards;
-      z-index: 9999;
     }
 
     @keyframes fadeInOut {
       0% { opacity: 0; }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
+      10% { opacity: 1; }
+      80% { opacity: 1; }
       100% { opacity: 0; visibility: hidden; }
     }
 
-    /* 본문은 처음에 숨김 */
-    #main-content {
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    body.loaded #main-content {
-      opacity: 1;
-    }
-
-    /* ===== 헤더 ===== */
+    /* 헤더 */
     header {
       position: sticky;
       top: 0;
@@ -60,7 +47,7 @@
     }
 
     header img {
-      height: 80px;
+      height: 60px;
       width: auto;
     }
 
@@ -80,52 +67,18 @@
       opacity: 0.6;
     }
 
-    /* 모바일 메뉴 버튼 */
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* 모바일 메뉴 */
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      align-items: flex-start;
-      background: white;
-      border-top: 1px solid #eee;
-      padding: 1rem 2rem;
-    }
-
-    .mobile-nav a {
-      margin: 0.5rem 0;
-      font-weight: 500;
-      color: #111;
-      text-decoration: none;
-    }
-
-    /* 반응형 설정 */
+    /* 모바일 메뉴 반응형 */
     @media (max-width: 768px) {
       nav {
         display: none;
       }
 
-      .menu-toggle {
-        display: block;
-      }
-
-      .mobile-nav.active {
-        display: flex;
-      }
-
       header {
-        flex-wrap: wrap;
+        justify-content: center;
       }
     }
 
-    /* ===== 메인 섹션 ===== */
+    /* 섹션 스타일 */
     section {
       padding: 4rem 2rem;
       text-align: center;
@@ -167,6 +120,13 @@
       background: #005bb5;
     }
 
+    .image-sample {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 1rem;
+      margin-top: 2rem;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -179,54 +139,59 @@
 </head>
 
 <body>
-  <!-- 🌟 인트로 화면 -->
+
+  <!-- 인트로 이미지 -->
   <div id="intro"></div>
 
-  <!-- 🌟 메인 컨텐츠 -->
-  <div id="main-content">
-    <header>
-      <img src="logo.png" alt="이우주치과 로고" />
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-      <nav>
-        <a href="#">홈</a>
-        <a href="#">진료안내</a>
-        <a href="#">의료진소개</a>
-        <a href="#">전후사진</a>
-        <a href="#">오시는 길</a>
-      </nav>
-      <div class="mobile-nav" id="mobileNav">
-        <a href="#">홈</a>
-        <a href="#">진료안내</a>
-        <a href="#">의료진소개</a>
-        <a href="#">전후사진</a>
-        <a href="#">오시는 길</a>
-      </div>
-    </header>
+  <!-- 헤더 -->
+  <header>
+    <img src="logo.png" alt="이우주치과 로고">
+    <nav>
+      <a href="#">홈</a>
+      <a href="#">진료안내</a>
+      <a href="#">의료진소개</a>
+      <a href="#">전후사진</a>
+      <a href="#">오시는길</a>
+    </nav>
+  </header>
 
-    <section class="hero">
-      <h2>합리적인 가격의 프리미엄 진료</h2>
-      <p>교정, 임플란트, 심미보철, 턱관절, 치주 치료까지 —  
-        통증을 최소화하고, 환자에게 가장 적합한 치료를 제공합니다.</p>
-      <a href="#" class="button">네이버 예약 (준비중)</a>
-    </section>
+  <!-- 메인 콘텐츠 -->
+  <section id="home" class="hero">
+    <h2>합리적인 가격의 프리미엄 진료</h2>
+    <p>교정, 임플란트, 심미보철, 턱관절, 치주 치료까지 —  
+    통증을 최소화하고 환자에게 가장 적합한 치료를 제공합니다.</p>
+    <a href="#" class="button">네이버 예약 (준비중)</a>
+  </section>
 
-    <footer>
-      <p>© 2025 이우주치과 | 서울 영등포구 675 삼성 YJ 그랜드 빌딩 3층</p>
-    </footer>
-  </div>
+  <section id="services">
+    <h2>진료안내</h2>
+    <p>🦷 교정치료 · 임플란트 · 심미보철 · 턱관절 · 치주치료</p>
+    <img src="https://via.placeholder.com/800x400?text=진료이미지+샘플" class="image-sample" alt="진료 안내 이미지">
+  </section>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileNav').classList.toggle('active');
-    }
+  <section id="doctor">
+    <h2>의료진 소개</h2>
+    <p>모든 진료는 이우주 원장이 직접 진행합니다.<br>
+    환자 한 분 한 분께 가장 적합한 맞춤 치료를 제공합니다.</p>
+    <img src="https://via.placeholder.com/600x400?text=의료진+사진+샘플" class="image-sample" alt="의료진 사진">
+  </section>
 
-    // 인트로 끝나면 본문 표시
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.body.classList.add('loaded');
-        document.getElementById('intro').style.display = 'none';
-      }, 5000); // 5초 후 전환
-    });
-  </script>
+  <section id="beforeafter">
+    <h2>전후 사진</h2>
+    <img src="https://via.placeholder.com/700x350?text=전후사진+샘플+1" class="image-sample" alt="전후사진 샘플 1">
+    <img src="https://via.placeholder.com/700x350?text=전후사진+샘플+2" class="image-sample" alt="전후사진 샘플 2">
+  </section>
+
+  <section id="location">
+    <h2>오시는 길</h2>
+    <p>서울특별시 영등포구 675 삼성 YJ 그랜드 빌딩 3층<br>
+    전화: <a href="tel:028482875">02-848-2875</a></p>
+    <img src="https://via.placeholder.com/800x400?text=지도+샘플" class="image-sample" alt="오시는길 지도">
+  </section>
+
+  <footer>
+    <p>© 2025 이우주치과 | 서울 영등포구 675 삼성 YJ 그랜드 빌딩 3층</p>
+  </footer>
+
 </body>
 </html>
