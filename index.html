@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이우주치과</title>
   <style>
-    /* 전체 기본 폰트 및 설정 */
+    /* 기본 설정 */
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #111;
       background-color: #fff;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* 인트로 전체 화면 */
+    /* ✅ 인트로 화면 */
     #intro {
       position: fixed;
       inset: 0;
       background: #f5f5f7 url('intro.jpg') no-repeat center center;
-      background-size: contain; /* 파노라마 전체 표시 */
+      background-size: contain;
+      background-color: #f5f5f7;
       z-index: 9999;
       opacity: 0;
-      animation: fadeInOut 5s ease forwards;
+      transform: scale(1);
+      animation: fadeZoom 6s ease forwards;
     }
 
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
+    /* 📱 모바일에서는 꽉 차게 */
+    @media (max-width: 768px) {
+      #intro {
+        background-size: cover;
+        background-position: center center;
+      }
     }
 
-    /* 헤더 */
+    /* ✅ 인트로 애니메이션 */
+    @keyframes fadeZoom {
+      0% {
+        opacity: 0;
+        transform: scale(1);
+      }
+      20% {
+        opacity: 1;
+        transform: scale(1.02);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.07);
+        visibility: hidden;
+      }
+    }
+
+    /* ✅ 헤더 */
     header {
       position: sticky;
       top: 0;
@@ -47,19 +72,19 @@
     }
 
     header img {
-      height: 60px;
+      height: 90px;
       width: auto;
     }
 
     nav {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
+      font-weight: 500;
     }
 
     nav a {
       text-decoration: none;
       color: #111;
-      font-weight: 500;
       transition: opacity 0.2s;
     }
 
@@ -67,18 +92,26 @@
       opacity: 0.6;
     }
 
-    /* 모바일 메뉴 반응형 */
+    /* ✅ 반응형 헤더 */
     @media (max-width: 768px) {
-      nav {
-        display: none;
+      header {
+        flex-direction: column;
+        text-align: center;
       }
 
-      header {
+      nav {
+        flex-wrap: wrap;
         justify-content: center;
+        gap: 1rem;
+      }
+
+      header img {
+        height: 70px;
+        margin-bottom: 0.5rem;
       }
     }
 
-    /* 섹션 스타일 */
+    /* ✅ 본문 */
     section {
       padding: 4rem 2rem;
       text-align: center;
@@ -137,29 +170,28 @@
     }
   </style>
 </head>
-
 <body>
 
-  <!-- 인트로 이미지 -->
+  <!-- ✅ 인트로 -->
   <div id="intro"></div>
 
-  <!-- 헤더 -->
+  <!-- ✅ 헤더 -->
   <header>
-    <img src="logo.png" alt="이우주치과 로고">
+    <img src="logo.png" alt="이우주치과 로고" />
     <nav>
       <a href="#">홈</a>
       <a href="#">진료안내</a>
       <a href="#">의료진소개</a>
       <a href="#">전후사진</a>
-      <a href="#">오시는길</a>
+      <a href="#">오시는 길</a>
     </nav>
   </header>
 
-  <!-- 메인 콘텐츠 -->
+  <!-- ✅ 메인 섹션 -->
   <section id="home" class="hero">
     <h2>합리적인 가격의 프리미엄 진료</h2>
     <p>교정, 임플란트, 심미보철, 턱관절, 치주 치료까지 —  
-    통증을 최소화하고 환자에게 가장 적합한 치료를 제공합니다.</p>
+    통증을 최소화하고, 환자에게 가장 적합한 치료를 제공합니다.</p>
     <a href="#" class="button">네이버 예약 (준비중)</a>
   </section>
 
