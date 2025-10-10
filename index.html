@@ -13,36 +13,51 @@
       line-height: 1.6;
     }
 
-   header {
-  position: sticky;
-  top: 0;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: flex-start; /* ← 이 줄 수정 */
-  align-items: center;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #eee;
-}
-
-    header h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+    /* ===== 헤더 ===== */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      z-index: 100;
     }
 
-    nav a {
-      margin: 0 1rem;
+    header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; /* ✅ 왼쪽 정렬 */
+      gap: 2.5rem; /* 로고와 메뉴 간 간격 */
+    }
+
+    header img {
+      height: 90px; /* ✅ 로고 크기 */
+      width: auto;
+      object-fit: contain;
+    }
+
+    header nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    header nav a {
       text-decoration: none;
-      color: #111;
+      color: #222;
       font-weight: 500;
-      transition: opacity 0.2s;
+      font-size: 1rem;
+      transition: color 0.2s;
     }
 
-    nav a:hover {
-      opacity: 0.6;
+    header nav a:hover {
+      color: #0071e3;
     }
 
+    /* ===== 본문 ===== */
     section {
       padding: 4rem 2rem;
       text-align: center;
@@ -91,6 +106,7 @@
       margin-top: 2rem;
     }
 
+    /* ===== 푸터 ===== */
     footer {
       text-align: center;
       padding: 2rem;
@@ -100,30 +116,25 @@
       border-top: 1px solid #eee;
     }
   </style>
+</head>
+
 <body>
-<header class="w-full border-b bg-white">
-  <div class="flex items-center justify-start max-w-7xl mx-auto py-3 px-8 space-x-10">
-    <img 
-      src="logo.png" 
-      alt="이우주치과 로고" 
-      class="object-contain" 
-      style="height: 90px; width: auto;" 
-    />
-    <nav class="flex space-x-6 text-gray-800 text-base font-medium">
-      <a href="#" class="hover:text-gray-500 transition">홈</a>
-      <a href="#" class="hover:text-gray-500 transition">진료안내</a>
-      <a href="#" class="hover:text-gray-500 transition">의료진소개</a>
-      <a href="#" class="hover:text-gray-500 transition">전후사진</a>
-      <a href="#" class="hover:text-gray-500 transition">오시는 길</a>
-    </nav>
-  </div>
-</header>
+  <!-- ===== 헤더 시작 ===== -->
+  <header>
+    <div class="container">
+      <img src="logo.png" alt="이우주치과 로고" />
+      <nav>
+        <a href="#">홈</a>
+        <a href="#">진료안내</a>
+        <a href="#">의료진소개</a>
+        <a href="#">전후사진</a>
+        <a href="#">오시는 길</a>
+      </nav>
+    </div>
+  </header>
+  <!-- ===== 헤더 끝 ===== -->
 
-
-
-
-
-
+  <!-- ===== 메인 섹션 ===== -->
   <section id="home" class="hero">
     <h2>합리적인 가격의 프리미엄 진료</h2>
     <p>교정, 임플란트, 심미보철, 턱관절, 치주 치료까지 —  
@@ -157,9 +168,9 @@
     <img src="https://via.placeholder.com/800x400?text=지도+샘플" class="image-sample" alt="오시는길 지도">
   </section>
 
+  <!-- ===== 푸터 ===== -->
   <footer>
     <p>© 2025 이우주치과 | 서울 영등포구 675 삼성 YJ 그랜드 빌딩 3층</p>
   </footer>
-
 </body>
 </html>
