@@ -14,45 +14,57 @@
       overflow-x: hidden;
     }
 
-    /* ✅ 인트로 */
+    /* ✅ 인트로 배경 */
     #intro {
       position: fixed;
       inset: 0;
       background: #f5f5f7 url('intro.jpg') no-repeat center center;
       background-size: contain;
       z-index: 9999;
-      animation: fadeZoomSmooth 6s ease-in-out forwards;
+      animation: fadeZoom 6s ease-in-out forwards;
       will-change: transform, opacity;
-      transform: scale(1);
-      backface-visibility: hidden;
     }
 
-    /* 📱 모바일에서는 꽉 차게 */
+    @keyframes fadeZoom {
+      0% { opacity: 0; transform: scale(1); }
+      10% { opacity: 1; transform: scale(1.02); }
+      90% { opacity: 1; transform: scale(1.12); }
+      100% { opacity: 0; transform: scale(1.15); visibility: hidden; }
+    }
+
     @media (max-width: 768px) {
-      #intro {
-        background-size: cover;
-        background-position: center center;
-      }
+      #intro { background-size: cover; background-position: center; }
     }
 
-    /* ✅ 부드러운 줌인 + 페이드아웃 */
-    @keyframes fadeZoomSmooth {
+    /* ✅ 중앙 로고 (인트로 전용) */
+    #intro-logo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      z-index: 10000;
+      width: 200px;
+      animation: logoIntro 3.5s cubic-bezier(0.65, 0, 0.35, 1) 5.5s forwards;
+      /* cubic-bezier → 부드럽고 자연스러운 감속 */
+    }
+
+    @keyframes logoIntro {
       0% {
+        transform: translate(-50%, -50%) scale(0.2);
         opacity: 0;
-        transform: scale(1);
       }
-      10% {
+      20% {
+        transform: translate(-50%, -50%) scale(1.1);
         opacity: 1;
-        transform: scale(1.02);
       }
-      90% {
+      60% {
+        transform: translate(-50%, -50%) scale(1);
         opacity: 1;
-        transform: scale(1.12);
       }
       100% {
-        opacity: 0;
-        transform: scale(1.15);
-        visibility: hidden;
+        transform: translate(calc(-50vw + 60px), calc(-50vh + 60px)) scale(0.45);
+        opacity: 1;
       }
     }
 
@@ -73,6 +85,8 @@
     header img {
       height: 90px;
       width: auto;
+      transition: opacity 0.3s ease;
+      opacity: 0; /* 나중에 JS로 활성화 */
     }
 
     nav {
@@ -87,30 +101,21 @@
       transition: opacity 0.2s;
     }
 
-    nav a:hover {
-      opacity: 0.6;
-    }
+    nav a:hover { opacity: 0.6; }
 
-    /* ✅ 반응형 헤더 */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
         text-align: center;
       }
-
       nav {
         flex-wrap: wrap;
         justify-content: center;
         gap: 1rem;
       }
-
-      header img {
-        height: 70px;
-        margin-bottom: 0.5rem;
-      }
+      header img { height: 70px; margin-bottom: 0.5rem; }
     }
 
-    /* ✅ 본문 */
     section {
       padding: 4rem 2rem;
       text-align: center;
@@ -148,9 +153,7 @@
       transition: background 0.3s;
     }
 
-    .button:hover {
-      background: #005bb5;
-    }
+    .button:hover { background: #005bb5; }
 
     .image-sample {
       width: 100%;
@@ -171,12 +174,15 @@
 </head>
 <body>
 
-  <!-- ✅ 인트로 -->
+  <!-- ✅ 인트로 배경 -->
   <div id="intro"></div>
+
+  <!-- ✅ 중앙 로고 (인트로용) -->
+  <img id="intro-logo" src="logo.png" alt="이우주치과 로고" />
 
   <!-- ✅ 헤더 -->
   <header>
-    <img src="logo.png" alt="이우주치과 로고" />
+    <img id="header-logo" src="logo.png" alt="이우주치과 로고" />
     <nav>
       <a href="#">홈</a>
       <a href="#">진료안내</a>
@@ -186,7 +192,7 @@
     </nav>
   </header>
 
-  <!-- ✅ 메인 -->
+  <!-- ✅ 본문 -->
   <section id="home" class="hero">
     <h2>합리적인 가격의 프리미엄 진료</h2>
     <p>교정, 임플란트, 심미보철, 턱관절, 치주 치료까지 —  
@@ -224,5 +230,11 @@
     <p>© 2025 이우주치과 | 서울 영등포구 675 삼성 YJ 그랜드 빌딩 3층</p>
   </footer>
 
+  <script>
+    // 인트로 종료 후 헤더 로고 등장
+    setTimeout(() => {
+      document.getElementById("header-logo").style.opacity = "1";
+    }, 8700);
+  </script>
 </body>
 </html>
