@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이우주치과</title>
   <style>
-    /* 기본 설정 */
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -23,9 +22,8 @@
       background-size: contain;
       background-color: #f5f5f7;
       z-index: 9999;
-      opacity: 0;
+      animation: fadeZoom 6s ease-in-out forwards;
       transform: scale(1);
-      animation: fadeZoom 6s ease forwards;
     }
 
     /* 📱 모바일에서는 꽉 차게 */
@@ -36,7 +34,7 @@
       }
     }
 
-    /* ✅ 인트로 애니메이션 */
+    /* ✅ 확대 + 페이드 애니메이션 */
     @keyframes fadeZoom {
       0% {
         opacity: 0;
@@ -44,15 +42,19 @@
       }
       20% {
         opacity: 1;
-        transform: scale(1.02);
+        transform: scale(1.03);
       }
-      70% {
+      50% {
         opacity: 1;
-        transform: scale(1.05);
+        transform: scale(1.07);
+      }
+      80% {
+        opacity: 1;
+        transform: scale(1.1);
       }
       100% {
         opacity: 0;
-        transform: scale(1.07);
+        transform: scale(1.15);
         visibility: hidden;
       }
     }
