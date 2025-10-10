@@ -7,9 +7,18 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* ============================
-       1️⃣ 인트로 배경 (파노라마)
+       기본 배경 (처음엔 흰색)
     ============================ */
-    #intro {
+    body {
+      margin: 0;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    /* ============================
+       1️⃣ 인트로 1 (파노라마)
+    ============================ */
+    #intro1 {
       position: fixed;
       top: 0;
       left: 0;
@@ -18,16 +27,16 @@
       background: url('intro.jpg') center center / contain no-repeat;
       background-color: #fff;
       opacity: 0;
-      animation: introFadeZoom 4s ease-out forwards;
-      z-index: 50;
+      z-index: 100;
+      animation: intro1FadeZoom 5s ease-in-out forwards;
     }
 
-    @keyframes introFadeZoom {
+    @keyframes intro1FadeZoom {
       0% {
         opacity: 0;
         transform: scale(1.05);
       }
-      50% {
+      40% {
         opacity: 1;
         transform: scale(1);
       }
@@ -38,17 +47,17 @@
     }
 
     /* ============================
-       2️⃣ 로고 인트로 (intro2.jpg)
+       2️⃣ 인트로 2 (로고)
     ============================ */
-    #intro-logo {
+    #intro2 {
       position: fixed;
       top: 50%;
       left: 50%;
-      height: 150px; /* 절반 크기로 조정 */
+      height: 150px; /* 절반 크기 */
       width: auto;
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0.9);
-      z-index: 60;
+      transform: translate(-50%, -50%) scale(0.8);
+      z-index: 101;
     }
 
     @keyframes logoAppear {
@@ -86,24 +95,23 @@
       opacity: 1;
     }
 
-    /* 페이드 아웃 효과 */
+    /* 페이드 아웃 */
     .fade-out {
       animation: fadeOut 2s ease-in-out forwards;
     }
-
     @keyframes fadeOut {
       0% { opacity: 1; }
       100% { opacity: 0; }
     }
   </style>
 </head>
-<body class="bg-white text-gray-800">
+<body>
 
-  <!-- 인트로 배경 -->
-  <div id="intro"></div>
+  <!-- 인트로 1 -->
+  <div id="intro1"></div>
 
-  <!-- 로고 인트로 -->
-  <img id="intro-logo" src="intro2.jpg" alt="이우주치과 로고" />
+  <!-- 인트로 2 (로고) -->
+  <img id="intro2" src="intro2.jpg" alt="이우주치과 로고" />
 
   <!-- 헤더 -->
   <header class="w-full border-b bg-white fixed top-0 left-0 z-40">
@@ -131,30 +139,32 @@
   </main>
 
   <script>
-    const intro = document.getElementById('intro');
-    const logo = document.getElementById('intro-logo');
+    const intro1 = document.getElementById('intro1');
+    const intro2 = document.getElementById('intro2');
     const main = document.getElementById('main-content');
 
-    // 1️⃣ 인트로 페이드아웃
+    // 1️⃣ 인트로1 일정 시간 후 페이드아웃
     setTimeout(() => {
-      intro.classList.add('fade-out');
-    }, 3500);
+      intro1.classList.add('fade-out');
+    }, 4000);
 
-    // 2️⃣ 인트로 완전히 사라진 뒤 로고 등장
+    // 2️⃣ 인트로1 완전히 사라진 뒤 intro2 등장
     setTimeout(() => {
-      logo.style.animation = 'logoAppear 2s ease-out forwards';
-    }, 6000); // ⬅️ intro 페이드아웃 이후에 등장
+      intro2.style.animation = 'logoAppear 1.8s ease-out forwards';
+    }, 6500); // intro1 사라진 후 약간의 여유 시간
 
     // 3️⃣ 로고 이동
     setTimeout(() => {
-      logo.style.animation = 'moveLogoToHeader 2s ease-in-out forwards';
-    }, 8000);
+      intro2.style.animation = 'moveLogoToHeader 2.5s ease-in-out forwards';
+    }, 8500);
 
     // 4️⃣ 메인 콘텐츠 표시
     setTimeout(() => {
-      intro.style.display = 'none';
+      intro1.style.display = 'none';
       main.classList.add('show');
-    }, 10000);
+      document.body.style.overflow = 'auto'; // 스크롤 활성화
+    }, 11000);
   </script>
+
 </body>
 </html>
