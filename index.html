@@ -59,24 +59,21 @@
       z-index: 101;
     }
 
-    @keyframes logoAppear {
+    @keyframes logoSequence {
       0% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.9);
       }
-      100% {
+      15% {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
       }
-    }
-
-    @keyframes moveLogoToHeader {
-      0% {
-        top: 50%;
-        left: 50%;
+      60% {
+        opacity: 1;
         transform: translate(-50%, -50%) scale(1);
       }
       100% {
+        opacity: 1;
         top: 26px;
         left: 66px;
         transform: scale(0.5);
@@ -136,18 +133,13 @@
     window.onload = () => {
       body.style.visibility = 'visible';
 
-      // 1️⃣ intro1은 자동으로 애니메이션 (6초)
-      // 2️⃣ intro1 완전히 끝난 뒤 (6.5초 후) → intro2 등장
+      // intro1 → 6초
+      // intro2는 6.5초 후 시작
       setTimeout(() => {
-        intro2.style.animation = 'logoAppear 1.8s ease-out forwards';
+        intro2.style.animation = 'logoSequence 4.5s ease-in-out forwards';
       }, 6500);
 
-      // 3️⃣ intro2가 중앙에 뜬 후 → 헤더 위치로 이동 (9초 시점)
-      setTimeout(() => {
-        intro2.style.animation = 'moveLogoToHeader 2.5s ease-in-out forwards';
-      }, 9000);
-
-      // 4️⃣ intro2 이동 완료 후 → 본문과 헤더 표시
+      // intro2 이동 끝난 뒤 본문 등장
       setTimeout(() => {
         intro1.style.display = 'none';
         header.classList.add('show');
