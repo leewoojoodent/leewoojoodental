@@ -14,16 +14,17 @@
       overflow-x: hidden;
     }
 
-    /* ✅ 인트로 화면 */
+    /* ✅ 인트로 */
     #intro {
       position: fixed;
       inset: 0;
       background: #f5f5f7 url('intro.jpg') no-repeat center center;
       background-size: contain;
-      background-color: #f5f5f7;
       z-index: 9999;
-      animation: fadeZoom 6s ease-in-out forwards;
+      animation: fadeZoomSmooth 6s ease-in-out forwards;
+      will-change: transform, opacity;
       transform: scale(1);
+      backface-visibility: hidden;
     }
 
     /* 📱 모바일에서는 꽉 차게 */
@@ -34,23 +35,19 @@
       }
     }
 
-    /* ✅ 확대 + 페이드 애니메이션 */
-    @keyframes fadeZoom {
+    /* ✅ 부드러운 줌인 + 페이드아웃 */
+    @keyframes fadeZoomSmooth {
       0% {
         opacity: 0;
         transform: scale(1);
       }
-      20% {
+      10% {
         opacity: 1;
-        transform: scale(1.03);
+        transform: scale(1.02);
       }
-      50% {
+      90% {
         opacity: 1;
-        transform: scale(1.07);
-      }
-      80% {
-        opacity: 1;
-        transform: scale(1.1);
+        transform: scale(1.12);
       }
       100% {
         opacity: 0;
@@ -189,7 +186,7 @@
     </nav>
   </header>
 
-  <!-- ✅ 메인 섹션 -->
+  <!-- ✅ 메인 -->
   <section id="home" class="hero">
     <h2>합리적인 가격의 프리미엄 진료</h2>
     <p>교정, 임플란트, 심미보철, 턱관절, 치주 치료까지 —  
