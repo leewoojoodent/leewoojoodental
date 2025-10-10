@@ -7,16 +7,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* ============================
-       기본 배경 (처음엔 흰색)
+       기본 설정
     ============================ */
     body {
       margin: 0;
       background: #fff;
       overflow: hidden;
+      visibility: hidden; /* 처음엔 안 보이게 */
     }
 
     /* ============================
-       1️⃣ 인트로 1 (파노라마)
+       인트로 1 (파노라마)
     ============================ */
     #intro1 {
       position: fixed;
@@ -46,14 +47,23 @@
       }
     }
 
+    .fade-out {
+      animation: fadeOut 2s ease-in-out forwards;
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
     /* ============================
-       2️⃣ 인트로 2 (로고)
+       인트로 2 (로고)
     ============================ */
     #intro2 {
       position: fixed;
       top: 50%;
       left: 50%;
-      height: 150px; /* 절반 크기 */
+      height: 150px;
       width: auto;
       opacity: 0;
       transform: translate(-50%, -50%) scale(0.8);
@@ -85,23 +95,14 @@
     }
 
     /* ============================
-       3️⃣ 메인 콘텐츠
+       메인 콘텐츠
     ============================ */
-    #main-content {
+    #main-content, header {
       opacity: 0;
       transition: opacity 1.5s ease-in;
     }
-    #main-content.show {
+    #main-content.show, header.show {
       opacity: 1;
-    }
-
-    /* 페이드 아웃 */
-    .fade-out {
-      animation: fadeOut 2s ease-in-out forwards;
-    }
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      100% { opacity: 0; }
     }
   </style>
 </head>
@@ -110,7 +111,7 @@
   <!-- 인트로 1 -->
   <div id="intro1"></div>
 
-  <!-- 인트로 2 (로고) -->
+  <!-- 인트로 2 -->
   <img id="intro2" src="intro2.jpg" alt="이우주치과 로고" />
 
   <!-- 헤더 -->
@@ -139,31 +140,40 @@
   </main>
 
   <script>
+    const body = document.body;
     const intro1 = document.getElementById('intro1');
     const intro2 = document.getElementById('intro2');
+    const header = document.querySelector('header');
     const main = document.getElementById('main-content');
 
-    // 1️⃣ 인트로1 일정 시간 후 페이드아웃
-    setTimeout(() => {
-      intro1.classList.add('fade-out');
-    }, 4000);
+    // 페이지 로드 완료 후 인트로 시작
+    window.onload = () => {
+      body.style.visibility = 'visible';
 
-    // 2️⃣ 인트로1 완전히 사라진 뒤 intro2 등장
-    setTimeout(() => {
-      intro2.style.animation = 'logoAppear 1.8s ease-out forwards';
-    }, 6500); // intro1 사라진 후 약간의 여유 시간
+      // 1️⃣ 인트로1 애니메이션 후 페이드아웃
+      setTimeout(() => {
+        intro1.classList.add('fade-out');
+      }, 4500);
 
-    // 3️⃣ 로고 이동
-    setTimeout(() => {
-      intro2.style.animation = 'moveLogoToHeader 2.5s ease-in-out forwards';
-    }, 8500);
+      // 2️⃣ intro1 완전히 사라진 후 intro2 등장 (겹침 방지)
+      setTimeout(() => {
+        intro2.style.animation = 'logoAppear 1.8s ease-out forwards';
+      }, 7000);
 
-    // 4️⃣ 메인 콘텐츠 표시
-    setTimeout(() => {
-      intro1.style.display = 'none';
-      main.classList.add('show');
-      document.body.style.overflow = 'auto'; // 스크롤 활성화
-    }, 11000);
+      // 3️⃣ intro2 왼쪽 상단으로 이동
+      setTimeout(() => {
+        intro2.style.animation = 'moveLogoToHeader 2.5s ease-in-out forwards';
+      }, 9500);
+
+      // 4️⃣ intro 완전히 끝나면 본문 보이기
+      setTimeout(() => {
+        intro1.style.display = 'none';
+        intro2.style.opacity = 1;
+        main.classList.add('show');
+        header.classList.add('show');
+        body.style.overflow = 'auto';
+      }, 12000);
+    };
   </script>
 
 </body>
