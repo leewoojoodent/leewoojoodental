@@ -6,16 +6,18 @@
   <title>이우주치과</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* 첫 인트로 배경 (intro.jpg) */
+    /* ============================
+       1️⃣ 인트로 배경 (파노라마)
+    ============================ */
     #intro {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('intro.jpg') center center / cover no-repeat;
+      background: url('intro.jpg') center center / contain no-repeat;
+      background-color: #fff;
       opacity: 0;
-      transform: scale(1.05);
       animation: introFadeZoom 4s ease-out forwards;
       z-index: 50;
     }
@@ -35,19 +37,20 @@
       }
     }
 
-    /* 두 번째 로고 인트로 (intro2.jpg) */
+    /* ============================
+       2️⃣ 로고 인트로 (intro2.jpg)
+    ============================ */
     #intro-logo {
       position: fixed;
       top: 50%;
       left: 50%;
+      height: 150px; /* 절반 크기로 조정 */
       width: auto;
-      height: 300px;
       opacity: 0;
       transform: translate(-50%, -50%) scale(0.9);
       z-index: 60;
     }
 
-    /* 로고 등장 */
     @keyframes logoAppear {
       0% {
         opacity: 0;
@@ -59,7 +62,6 @@
       }
     }
 
-    /* 로고 이동 (중앙 → 왼쪽 상단) */
     @keyframes moveLogoToHeader {
       0% {
         top: 50%;
@@ -73,7 +75,9 @@
       }
     }
 
-    /* 본문 (인트로 끝난 뒤 등장) */
+    /* ============================
+       3️⃣ 메인 콘텐츠
+    ============================ */
     #main-content {
       opacity: 0;
       transition: opacity 1.5s ease-in;
@@ -95,7 +99,7 @@
 </head>
 <body class="bg-white text-gray-800">
 
-  <!-- 첫 인트로 배경 -->
+  <!-- 인트로 배경 -->
   <div id="intro"></div>
 
   <!-- 로고 인트로 -->
@@ -115,7 +119,7 @@
     </div>
   </header>
 
-  <!-- 본문 -->
+  <!-- 메인 콘텐츠 -->
   <main id="main-content" class="pt-40 flex flex-col items-center text-center px-6">
     <h1 class="text-3xl md:text-4xl font-bold mb-4">합리적인 가격의 프리미엄 진료</h1>
     <p class="text-gray-600 mb-8">
@@ -131,26 +135,26 @@
     const logo = document.getElementById('intro-logo');
     const main = document.getElementById('main-content');
 
-    // 1️⃣ 첫 인트로 페이드아웃
+    // 1️⃣ 인트로 페이드아웃
     setTimeout(() => {
       intro.classList.add('fade-out');
     }, 3500);
 
-    // 2️⃣ intro.jpg 사라지고 로고 등장
+    // 2️⃣ 인트로 완전히 사라진 뒤 로고 등장
     setTimeout(() => {
       logo.style.animation = 'logoAppear 2s ease-out forwards';
-    }, 5000);
+    }, 6000); // ⬅️ intro 페이드아웃 이후에 등장
 
     // 3️⃣ 로고 이동
     setTimeout(() => {
       logo.style.animation = 'moveLogoToHeader 2s ease-in-out forwards';
-    }, 7000);
+    }, 8000);
 
-    // 4️⃣ 메인 콘텐츠 등장
+    // 4️⃣ 메인 콘텐츠 표시
     setTimeout(() => {
       intro.style.display = 'none';
       main.classList.add('show');
-    }, 9000);
+    }, 10000);
   </script>
 </body>
 </html>
