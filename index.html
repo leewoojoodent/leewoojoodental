@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이우주치과</title>
   <style>
     body {
@@ -28,20 +28,20 @@
       margin: 0 auto;
       padding: 0.8rem 2rem;
       display: flex;
-      align-items: center;
-      justify-content: flex-start; /* ✅ 왼쪽 정렬 */
-      gap: 2.5rem; /* 로고와 메뉴 간 간격 */
+      align-items: flex-end; /* ✅ 로고와 메뉴 하단 정렬 */
+      justify-content: space-between; /* ✅ 메뉴를 오른쪽 끝으로 */
     }
 
     header img {
       height: 90px; /* ✅ 로고 크기 */
       width: auto;
       object-fit: contain;
+      display: block;
     }
 
     header nav {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       gap: 2rem;
     }
 
