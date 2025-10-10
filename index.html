@@ -121,30 +121,36 @@
     </button>
   </main>
 
-  <script>
-    const body = document.body;
-    const intro1 = document.getElementById('intro1');
-    const intro2 = document.getElementById('intro2');
-    const header = document.querySelector('header');
-    const main = document.getElementById('main-content');
+ <script>
+  const body = document.body;
+  const intro1 = document.getElementById('intro1');
+  const intro2 = document.getElementById('intro2');
+  const header = document.querySelector('header');
+  const main = document.getElementById('main-content');
 
-    window.onload = () => {
-      body.style.visibility = 'visible';
+  window.onload = () => {
+    body.style.visibility = 'visible';
+    body.style.overflow = 'hidden'; // 인트로 동안 스크롤 잠금
 
-      // intro1 → 6초간 실행
+    // intro1 → 6초간 실행
+    setTimeout(() => {
+      intro2.style.animation = 'logoAppearFade 5s ease-in-out forwards';
+    }, 6500);
+
+    // intro2 끝난 후 메인페이지 등장
+    setTimeout(() => {
+      intro1.style.display = 'none';
+      intro2.style.display = 'none';
+      header.classList.add('show');
+      main.classList.add('show');
+
+      // 👇 스크롤을 확실히 활성화 (지연 포함)
       setTimeout(() => {
-        intro2.style.animation = 'logoAppearFade 5s ease-in-out forwards';
-      }, 6500);
+        body.style.overflowY = 'scroll';
+      }, 800);
+    }, 12000);
+  };
+</script>
 
-      // intro2 끝난 후 메인페이지 등장
-      setTimeout(() => {
-        intro1.style.display = 'none';
-        intro2.style.display = 'none';
-        header.classList.add('show');
-        main.classList.add('show');
-        body.style.overflow = 'auto';
-      }, 12000);
-    };
-  </script>
 </body>
 </html>
