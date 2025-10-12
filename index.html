@@ -29,22 +29,10 @@
     }
 
     @keyframes intro1FadeZoom {
-      0% {
-        opacity: 0;
-        transform: scale(1.05);
-      }
-      20% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      70% {
-        opacity: 1;
-        transform: scale(1.02);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(1.04);
-      }
+      0% { opacity: 0; transform: scale(1.05); }
+      20% { opacity: 1; transform: scale(1); }
+      70% { opacity: 1; transform: scale(1.02); }
+      100% { opacity: 0; transform: scale(1.04); }
     }
 
     /* ===== 인트로2 (로고 중앙) ===== */
@@ -60,22 +48,10 @@
     }
 
     @keyframes logoAppearFade {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9);
-      }
-      15% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-      70% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.02);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1.05);
-      }
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+      15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      70% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
     }
 
     /* ===== 메인페이지 ===== */
@@ -85,6 +61,10 @@
     }
     header.show, #main-content.show {
       opacity: 1;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
@@ -101,56 +81,124 @@
     <div class="max-w-6xl mx-auto flex items-center py-3 px-6">
       <img src="logo.png" alt="이우주치과 로고" class="object-contain mr-6" style="height: 80px; width: auto;" />
       <nav class="flex space-x-6 text-gray-800 text-base font-medium ml-auto">
-        <a href="#" class="hover:text-gray-500 transition">홈</a>
-        <a href="#" class="hover:text-gray-500 transition">진료안내</a>
-        <a href="#" class="hover:text-gray-500 transition">의료진소개</a>
-        <a href="#" class="hover:text-gray-500 transition">전후사진</a>
-        <a href="#" class="hover:text-gray-500 transition">오시는 길</a>
+        <a href="#home" class="hover:text-gray-500 transition">홈</a>
+        <a href="#services" class="hover:text-gray-500 transition">진료안내</a>
+        <a href="#doctors" class="hover:text-gray-500 transition">의료진소개</a>
+        <a href="#gallery" class="hover:text-gray-500 transition">전후사진</a>
+        <a href="#location" class="hover:text-gray-500 transition">오시는 길</a>
       </nav>
     </div>
   </header>
 
   <!-- 메인 콘텐츠 -->
   <main id="main-content" class="pt-40 flex flex-col items-center text-center px-6">
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">합리적인 가격의 프리미엄 진료</h1>
-    <p class="text-gray-600 mb-8">
-      교정, 임플란트, 심미보철, 턱관절, 치주 치료까지 — 통증을 최소화하고, 환자에게 가장 적합한 치료를 제공합니다.
-    </p>
-    <button class="bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600 transition">
-      네이버 예약 (준비중)
-    </button>
+    <!-- 홈 -->
+    <section id="home" class="max-w-4xl mb-24">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">합리적인 가격의 프리미엄 진료</h1>
+      <p class="text-gray-600 mb-8">
+        교정, 임플란트, 심미보철, 턱관절, 치주 치료까지 — 통증을 최소화하고, 환자에게 가장 적합한 치료를 제공합니다.
+      </p>
+      <button class="bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600 transition">
+        네이버 예약 (준비중)
+      </button>
+    </section>
+
+    <!-- 진료 안내 -->
+    <section id="services" class="w-full max-w-6xl mx-auto py-24 px-6 text-center border-t">
+      <h2 class="text-3xl font-bold mb-8">진료 안내</h2>
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <img src="service1.jpg" alt="교정치료" class="w-full rounded-2xl mb-4 shadow" />
+          <h3 class="font-semibold text-lg mb-2">교정치료</h3>
+          <p class="text-gray-600 text-sm">맞춤형 교정 시스템으로 편안하고 정확한 교정 치료를 제공합니다.</p>
+        </div>
+        <div>
+          <img src="service2.jpg" alt="임플란트" class="w-full rounded-2xl mb-4 shadow" />
+          <h3 class="font-semibold text-lg mb-2">임플란트</h3>
+          <p class="text-gray-600 text-sm">풍부한 임상 경험으로 자연치아와 같은 기능을 회복시켜 드립니다.</p>
+        </div>
+        <div>
+          <img src="service3.jpg" alt="심미보철" class="w-full rounded-2xl mb-4 shadow" />
+          <h3 class="font-semibold text-lg mb-2">심미보철</h3>
+          <p class="text-gray-600 text-sm">자연스러운 색상과 형태로 아름다운 미소를 완성합니다.</p>
+        </div>
+        <div>
+          <img src="service4.jpg" alt="치주/턱관절" class="w-full rounded-2xl mb-4 shadow" />
+          <h3 class="font-semibold text-lg mb-2">치주 · 턱관절</h3>
+          <p class="text-gray-600 text-sm">잇몸과 턱관절 건강을 지켜주는 세심한 진료를 제공합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 의료진 소개 -->
+    <section id="doctors" class="w-full max-w-6xl mx-auto py-24 px-6 text-center border-t">
+      <h2 class="text-3xl font-bold mb-8">의료진 소개</h2>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+        <img src="doctor1.jpg" alt="원장 이우주" class="w-56 h-56 rounded-full object-cover shadow" />
+        <div class="text-left max-w-md">
+          <h3 class="text-2xl font-semibold mb-2">원장 이우주</h3>
+          <p class="text-gray-600 mb-4">서울대학교 치의학대학원 졸업, 교정 전문의</p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            환자 한 분 한 분의 상태에 맞는 최적의 진료를 위해 정직하고 세심한 치료를 약속드립니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 전후 사진 -->
+    <section id="gallery" class="w-full max-w-6xl mx-auto py-24 px-6 text-center border-t">
+      <h2 class="text-3xl font-bold mb-8">전후 사진</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div><img src="beforeafter1.jpg" alt="전후1" class="w-full rounded-2xl shadow" /></div>
+        <div><img src="beforeafter2.jpg" alt="전후2" class="w-full rounded-2xl shadow" /></div>
+        <div><img src="beforeafter3.jpg" alt="전후3" class="w-full rounded-2xl shadow" /></div>
+      </div>
+      <p class="text-gray-500 text-sm mt-6">(이미지는 환자 동의 하에 게재되었습니다.)</p>
+    </section>
+
+    <!-- 오시는 길 -->
+    <section id="location" class="w-full max-w-6xl mx-auto py-24 px-6 text-center border-t">
+      <h2 class="text-3xl font-bold mb-8">오시는 길</h2>
+      <p class="text-gray-700 mb-6">서울특별시 ○○구 ○○로 123, 이우주치과 (○○역 2번 출구 도보 3분)</p>
+      <div class="w-full h-96 rounded-2xl overflow-hidden shadow">
+        <iframe
+          src="https://map.naver.com/"
+          class="w-full h-full border-0"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
   </main>
 
- <script>
-  const body = document.body;
-  const intro1 = document.getElementById('intro1');
-  const intro2 = document.getElementById('intro2');
-  const header = document.querySelector('header');
-  const main = document.getElementById('main-content');
+  <script>
+    const body = document.body;
+    const intro1 = document.getElementById('intro1');
+    const intro2 = document.getElementById('intro2');
+    const header = document.querySelector('header');
+    const main = document.getElementById('main-content');
 
-  window.onload = () => {
-    body.style.visibility = 'visible';
-    body.style.overflow = 'hidden'; // 인트로 동안 스크롤 잠금
+    window.onload = () => {
+      body.style.visibility = 'visible';
+      body.style.overflow = 'hidden'; // 인트로 동안 스크롤 잠금
 
-    // intro1 → 6초간 실행
-    setTimeout(() => {
-      intro2.style.animation = 'logoAppearFade 5s ease-in-out forwards';
-    }, 6500);
-
-    // intro2 끝난 후 메인페이지 등장
-    setTimeout(() => {
-      intro1.style.display = 'none';
-      intro2.style.display = 'none';
-      header.classList.add('show');
-      main.classList.add('show');
-
-      // 👇 스크롤을 확실히 활성화 (지연 포함)
+      // intro1 → 6초간 실행
       setTimeout(() => {
-        body.style.overflowY = 'scroll';
-      }, 800);
-    }, 12000);
-  };
-</script>
+        intro2.style.animation = 'logoAppearFade 5s ease-in-out forwards';
+      }, 6500);
 
+      // intro2 끝난 후 메인페이지 등장
+      setTimeout(() => {
+        intro1.style.display = 'none';
+        intro2.style.display = 'none';
+        header.classList.add('show');
+        main.classList.add('show');
+
+        setTimeout(() => {
+          body.style.overflowY = 'scroll';
+        }, 800);
+      }, 12000);
+    };
+  </script>
 </body>
 </html>
