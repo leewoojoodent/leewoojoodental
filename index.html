@@ -14,7 +14,7 @@
       visibility: hidden;
     }
 
-    /* ===== 인트로 (로고 중앙) ===== */
+    /* ===== 인트로 (로고 + 글로우 효과) ===== */
     #intro2 {
       position: fixed;
       top: 50%;
@@ -25,13 +25,35 @@
       transform: translate(-50%, -50%) scale(0.9);
       z-index: 101;
       animation: logoAppearFade 5s ease-in-out forwards;
+      filter: drop-shadow(0 0 0 rgba(255,255,255,0)); /* 초기값 */
     }
 
     @keyframes logoAppearFade {
-      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-      15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-      70% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+        filter: drop-shadow(0 0 0 rgba(255,255,255,0));
+      }
+      15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        filter: drop-shadow(0 0 25px rgba(255,255,255,0.6));
+      }
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.03);
+        filter: drop-shadow(0 0 35px rgba(255,255,255,0.8));
+      }
+      70% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.02);
+        filter: drop-shadow(0 0 25px rgba(255,255,255,0.6));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.05);
+        filter: drop-shadow(0 0 0 rgba(255,255,255,0));
+      }
     }
 
     /* ===== 메인페이지 ===== */
@@ -55,4 +77,64 @@
 
   <!-- 헤더 -->
   <header class="w-full border-b bg-white fixed top-0 left-0 z-40">
-    <div class="max-w-6xl mx-auto flex items-center py
+    <div class="max-w-6xl mx-auto flex items-center py-3 px-6">
+      <img src="logo.png" alt="이우주치과 로고" class="object-contain mr-6" style="height: 80px; width: auto;" />
+      <nav class="flex space-x-6 text-gray-800 text-base font-medium ml-auto">
+        <a href="#home" class="hover:text-gray-500 transition">홈</a>
+        <a href="#services" class="hover:text-gray-500 transition">진료안내</a>
+        <a href="#doctors" class="hover:text-gray-500 transition">의료진소개</a>
+        <a href="#gallery" class="hover:text-gray-500 transition">전후사진</a>
+        <a href="#location" class="hover:text-gray-500 transition">오시는 길</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 메인 콘텐츠 -->
+  <main id="main-content" class="pt-40 flex flex-col items-center text-center px-6">
+    <section id="home" class="max-w-4xl mb-24">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">프리미엄 진료와 합리적인 진료</h1>
+      <p class="text-gray-600 mb-8">
+        교정, 임플란트, 심미보철, 턱관절, 치주, 보존 치료까지 — 통증을 최소화하고, 환자에게 가장 적합한 치료를 제공합니다.
+      </p>
+      <a href="#"
+         class="inline-flex items-center justify-center gap-2
+                bg-[#03C75A] text-white font-semibold text-base
+                px-6 py-3 rounded-full
+                hover:bg-[#02b350] transition-all duration-300
+                shadow-md hover:shadow-lg">
+        <!-- 네이버 로고 (SVG) -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-6 h-6">
+          <path fill="#fff" d="M12 12h7.7l7.2 10.6V12H36v24h-7.7l-7.2-10.6V36H12z"/>
+        </svg>
+        네이버 예약
+      </a>
+    </section>
+
+    <!-- 나머지 섹션 (진료 안내 / 의료진 소개 / 전후사진 / 오시는 길)은 동일 -->
+    <!-- 그대로 두시면 됩니다 -->
+  </main>
+
+  <script>
+    const body = document.body;
+    const intro2 = document.getElementById('intro2');
+    const header = document.querySelector('header');
+    const main = document.getElementById('main-content');
+
+    window.onload = () => {
+      body.style.visibility = 'visible';
+      body.style.overflow = 'hidden';
+
+      // 인트로2 5초 후 메인페이지 표시
+      setTimeout(() => {
+        intro2.style.display = 'none';
+        header.classList.add('show');
+        main.classList.add('show');
+
+        setTimeout(() => {
+          body.style.overflowY = 'scroll';
+        }, 600);
+      }, 5000);
+    };
+  </script>
+</body>
+</html>
