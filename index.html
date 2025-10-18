@@ -43,12 +43,10 @@
       height: 100vh;
       background: url('intro.jpg') center center / cover no-repeat;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: white;
-      overflow: hidden;
     }
 
     #home::after {
@@ -58,21 +56,6 @@
       width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.25);
       z-index: 0;
-    }
-
-    /* 홈 텍스트 */
-    .home-text {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: textFadeUp 2s ease-in-out forwards;
-      animation-delay: 0.5s;
-      position: relative;
-      z-index: 1;
-    }
-
-    @keyframes textFadeUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
     }
 
     /* ===== 메인페이지 페이드인 ===== */
@@ -91,7 +74,7 @@
 </head>
 
 <body>
-  <!-- 인트로 -->
+  <!-- 인트로 (로고만) -->
   <img id="intro2" src="intro2.jpg" alt="이우주치과 로고" />
 
   <!-- 헤더 -->
@@ -111,12 +94,29 @@
   <!-- 메인 콘텐츠 -->
   <main id="main-content" class="pt-20 flex flex-col items-center text-center px-6">
 
-    <!-- 홈 (인트로 배경화면) -->
-    <section id="home">
-      <div class="home-text">
-        <h1 class="text-5xl font-extrabold mb-4 drop-shadow-lg">이우주치과</h1>
-        <p class="text-xl font-light tracking-wide text-gray-100">Premium &amp; Reasonable Care</p>
-      </div>
+    <!-- 홈 (인트로 배경화면만 표시) -->
+    <section id="home"></section>
+
+    <!-- 인트로 배경 이후 본문 시작 -->
+    <section id="intro-text" class="max-w-4xl py-24 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">프리미엄 진료와 합리적인 진료</h1>
+      <p class="text-gray-600 mb-8">
+        교정, 임플란트, 심미보철, 턱관절, 치주, 보존 치료까지 — 통증을 최소화하고, 환자에게 가장 적합한 치료를 제공합니다.
+      </p>
+
+      <!-- ✅ 네이버 예약 버튼 복구 -->
+      <a href="#"
+         class="inline-flex items-center justify-center gap-2
+                bg-[#03C75A] text-white font-semibold text-base
+                px-6 py-3 rounded-full
+                hover:bg-[#02b350] transition-all duration-300
+                shadow-md hover:shadow-lg">
+        <!-- 네이버 로고 (SVG) -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-6 h-6">
+          <path fill="#fff" d="M12 12h7.7l7.2 10.6V12H36v24h-7.7l-7.2-10.6V36H12z"/>
+        </svg>
+        네이버 예약
+      </a>
     </section>
 
     <!-- 진료 안내 -->
@@ -157,8 +157,6 @@
             환자 한 분 한 분의 상태에 맞는 최적의 진료를 위해<br>
             정직하고 세심한 치료를 약속드립니다.
           </p>
-
-          <!-- ✅ 약력 복구됨 -->
           <ul class="text-gray-700 text-sm leading-relaxed space-y-1">
             <li>청담고등학교 졸업</li>
             <li>경북대학교 치과대학 졸업</li>
