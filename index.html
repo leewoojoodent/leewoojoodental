@@ -97,27 +97,36 @@
     <!-- 홈 (인트로 배경화면만 표시) -->
     <section id="home"></section>
 
-    <!-- 인트로 배경 이후 본문 시작 -->
-    <section id="intro-text" class="max-w-4xl py-24 text-center">
-      <h1 class="text-3xl md:text-4xl font-bold mb-4">프리미엄 진료와 합리적인 진료</h1>
-      <p class="text-gray-600 mb-8">
-        교정, 임플란트, 심미보철, 턱관절, 치주, 보존 치료까지 — 통증을 최소화하고, 환자에게 가장 적합한 치료를 제공합니다.
-      </p>
+  <!-- 인트로 배경 이후 본문 시작 -->
+<section id="premium" class="relative w-full h-[90vh] flex flex-col items-center justify-center text-center text-white">
+  <!-- desk.jpg 배경 -->
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('desk.jpg');"></div>
+  <!-- 반투명 오버레이 -->
+  <div class="absolute inset-0 bg-black/40"></div>
 
-      <!-- ✅ 네이버 예약 버튼 -->
-      <a href="#"
-         class="inline-flex items-center justify-center gap-2
-                bg-[#03C75A] text-white font-semibold text-base
-                px-6 py-3 rounded-full
-                hover:bg-[#02b350] transition-all duration-300
-                shadow-md hover:shadow-lg">
-        <!-- 네이버 로고 (SVG) -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-6 h-6">
-          <path fill="#fff" d="M12 12h7.7l7.2 10.6V12H36v24h-7.7l-7.2-10.6V36H12z"/>
-        </svg>
-        네이버 예약
-      </a>
-    </section>
+  <!-- 콘텐츠 -->
+  <div class="relative z-10 max-w-3xl px-6">
+    <h1 class="text-4xl md:text-5xl font-semibold mb-6 tracking-tight">프리미엄 진료와 합리적인 가격</h1>
+    <p class="text-lg text-gray-200 mb-10 leading-relaxed">
+      교정, 임플란트, 심미보철, 턱관절, 치주, 보존 치료까지 — 환자에게 꼭 맞는 진료를 제공합니다.
+    </p>
+
+    <!-- 네이버 예약 버튼 -->
+    <a href="#"
+       class="inline-flex items-center justify-center gap-2
+              bg-[#03C75A] text-white font-semibold text-base
+              px-6 py-3 rounded-full
+              hover:bg-[#02b350] transition-all duration-300
+              shadow-md hover:shadow-lg">
+      <!-- 네이버 로고 (SVG) -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-6 h-6">
+        <path fill="#fff" d="M12 12h7.7l7.2 10.6V12H36v24h-7.7l-7.2-10.6V36H12z"/>
+      </svg>
+      네이버 예약
+    </a>
+  </div>
+</section>
+
 
     <!-- 진료 안내 -->
     <section id="services" class="w-full max-w-6xl mx-auto py-24 px-6 text-center border-t bg-white">
