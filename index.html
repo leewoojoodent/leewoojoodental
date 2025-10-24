@@ -12,6 +12,8 @@
       background: #fff;
       overflow: hidden;
       visibility: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
     /* ===== 인트로 (로고 줌인 + 화이트 글로우) ===== */
@@ -29,33 +31,82 @@
     }
 
     @keyframes logoAppearFade {
-      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
-      15% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 25px rgba(255,255,255,0.7)); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); filter: drop-shadow(0 0 45px rgba(255,255,255,0.9)); }
-      75% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.15); filter: drop-shadow(0 0 30px rgba(255,255,255,0.6)); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+        filter: drop-shadow(0 0 0 rgba(255,255,255,0));
+      }
+      15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        filter: drop-shadow(0 0 25px rgba(255,255,255,0.7));
+      }
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+        filter: drop-shadow(0 0 45px rgba(255,255,255,0.9));
+      }
+      75% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.15);
+        filter: drop-shadow(0 0 30px rgba(255,255,255,0.6));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.2);
+        filter: drop-shadow(0 0 0 rgba(255,255,255,0));
+      }
     }
 
-    /* ===== 홈 섹션 (인트로 배경화면) ===== */
+    /* ===== 홈 섹션 (desk.jpg 배경 + 투명 오버레이 + 애플 스타일 카피) ===== */
     #home {
       position: relative;
       width: 100%;
-      height: 100vh;
-      background: url('intro.jpg') center center / cover no-repeat;
+      height: 100vh; /* 화면 꽉 채우기 */
+      background: url('desk.jpg') center center / cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: white;
+      overflow: hidden;
     }
 
+    /* 어둡게 덮는 반투명 레이어 (opacity 효과처럼 보임) */
     #home::after {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.25);
+      inset: 0;
+      background: rgba(0,0,0,0.45); /* 수치 올리면 더 어둡게 (0.45~0.6 추천) */
       z-index: 0;
+    }
+
+    /* 텍스트 박스 */
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 90%;
+      backdrop-filter: blur(6px);          /* 살짝 블러 (유리 느낌) */
+      background: rgba(255,255,255,0.07);  /* 완전 불투명 박스 대신 아주 옅은 유리막 */
+      border-radius: 1rem;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    }
+
+    .hero-headline {
+      font-size: clamp(1.8rem, 2vw + 1rem, 2.5rem);
+      font-weight: 600; /* Apple marketing은 완전 Bold보다 600~650 정도 느낌 */
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 0.3vw + .8rem, 1.125rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
     }
 
     /* ===== 메인페이지 페이드인 ===== */
@@ -63,7 +114,8 @@
       opacity: 0;
       transition: opacity 1.2s ease-in;
     }
-    header.show, #main-content.show {
+    header.show,
+    #main-content.show {
       opacity: 1;
     }
 
@@ -94,24 +146,31 @@
   <!-- 메인 콘텐츠 -->
   <main id="main-content" class="pt-20 flex flex-col items-center text-center px-6">
 
-    <!-- 홈 (인트로 배경화면만 표시) -->
-    <section id="home"></section>
+    <!-- 홈 (desk.jpg 배경) -->
+    <section id="home">
+      <div class="hero-content">
+        <h1 class="hero-headline">프리미엄 진료와 합리적인 가격</h1>
+        <p class="hero-desc">
+          세심한 진료, 정직한 가격 — 환자에게 가장 필요한 치료만을 제안합니다.
+        </p>
+      </div>
+    </section>
 
-    <!-- 인트로 배경 이후 본문 시작 -->
+    <!-- 인트로 이후 본문 시작 -->
     <section id="intro-text" class="max-w-4xl py-24 text-center">
-      <h1 class="text-3xl md:text-4xl font-bold mb-4">프리미엄 진료와 합리적인 진료</h1>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">진료 철학</h2>
       <p class="text-gray-600 mb-8">
-        교정, 임플란트, 심미보철, 턱관절, 치주, 보존 치료까지 — 통증을 최소화하고, 환자에게 가장 적합한 치료를 제공합니다.
+        교정, 임플란트, 심미보철, 턱관절, 치주, 보존 치료까지 — 통증을 최소화하고,
+        환자에게 가장 적합한 치료를 제공합니다.
       </p>
 
-      <!-- ✅ 네이버 예약 버튼 복구 -->
+      <!-- 네이버 예약 버튼 -->
       <a href="#"
          class="inline-flex items-center justify-center gap-2
                 bg-[#03C75A] text-white font-semibold text-base
                 px-6 py-3 rounded-full
                 hover:bg-[#02b350] transition-all duration-300
                 shadow-md hover:shadow-lg">
-        <!-- 네이버 로고 (SVG) -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-6 h-6">
           <path fill="#fff" d="M12 12h7.7l7.2 10.6V12H36v24h-7.7l-7.2-10.6V36H12z"/>
         </svg>
@@ -203,7 +262,7 @@
     const header = document.querySelector('header');
     const main = document.getElementById('main-content');
 
-    // ✅ 인트로 이미지 로딩 후 실행 (첫 방문 문제 해결)
+    // 인트로 이미지 로딩 후 실행 (첫 방문 문제 해결)
     intro2.onload = () => {
       body.style.visibility = 'visible';
       body.style.overflow = 'hidden';
@@ -219,7 +278,7 @@
       }, 5000);
     };
 
-    // 로딩 실패 시에도 페이지 표시
+    // 이미지 로드 실패 fallback
     intro2.onerror = () => {
       body.style.visibility = 'visible';
       header.classList.add('show');
