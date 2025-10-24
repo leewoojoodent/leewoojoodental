@@ -203,11 +203,11 @@
     const header = document.querySelector('header');
     const main = document.getElementById('main-content');
 
-    window.onload = () => {
+    // ✅ 인트로 이미지 로딩 후 실행 (첫 방문 문제 해결)
+    intro2.onload = () => {
       body.style.visibility = 'visible';
       body.style.overflow = 'hidden';
 
-      // 인트로2 5초 후 메인페이지 표시
       setTimeout(() => {
         intro2.style.display = 'none';
         header.classList.add('show');
@@ -217,6 +217,14 @@
           body.style.overflowY = 'scroll';
         }, 600);
       }, 5000);
+    };
+
+    // 로딩 실패 시에도 페이지 표시
+    intro2.onerror = () => {
+      body.style.visibility = 'visible';
+      header.classList.add('show');
+      main.classList.add('show');
+      body.style.overflowY = 'scroll';
     };
   </script>
 </body>
