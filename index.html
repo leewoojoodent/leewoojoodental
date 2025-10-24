@@ -97,20 +97,21 @@
     <!-- 홈 (인트로 배경화면만 표시) -->
     <section id="home"></section>
 
- <section id="premium" class="relative w-full h-[90vh] flex flex-col items-center justify-center text-center text-white overflow-hidden">
+<section id="premium" class="relative w-full h-[90vh] flex flex-col items-center justify-center text-center text-white overflow-hidden">
   <!-- 배경 이미지 -->
-  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('desk.jpg'); z-index: 0;"></div>
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('desk.jpg.jpeg');"></div>
 
-  <!-- ✅ 반투명 오버레이 (rgba 사용, 배경만 어둡게) -->
-  <div class="absolute inset-0" style="background: rgba(0,0,0,0.35); z-index: 1;"></div>
+  <!-- ✅ 반투명 오버레이 (배경만 어둡게) -->
+  <div class="absolute inset-0 bg-black" style="opacity: 0.4;"></div>
 
-  <!-- ✅ 글자 (항상 최상단) -->
-  <div class="relative z-20 max-w-3xl px-6">
+  <!-- 콘텐츠 -->
+  <div class="relative z-10 max-w-3xl px-6">
     <h1 class="text-4xl md:text-5xl font-semibold mb-6 tracking-tight">프리미엄 진료와 합리적인 가격</h1>
     <p class="text-lg text-gray-200 mb-10 leading-relaxed">
       교정, 임플란트, 심미보철, 턱관절, 치주, 보존 치료까지 — 환자에게 꼭 맞는 진료를 제공합니다.
     </p>
 
+    <!-- 네이버 예약 버튼 -->
     <a href="#"
        class="inline-flex items-center justify-center gap-2
               bg-[#03C75A] text-white font-semibold text-base
@@ -124,6 +125,7 @@
     </a>
   </div>
 </section>
+
 
 
 
