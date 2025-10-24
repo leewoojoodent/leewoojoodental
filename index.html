@@ -98,11 +98,12 @@
     <section id="home"></section>
 
   <!-- 인트로 배경 이후 본문 시작 -->
-<section id="premium" class="relative w-full h-[90vh] flex flex-col items-center justify-center text-center text-white">
+<section id="premium" class="relative w-full h-[90vh] flex flex-col items-center justify-center text-center text-white overflow-hidden">
   <!-- desk.jpg 배경 -->
   <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('desk.jpg');"></div>
-  <!-- 반투명 오버레이 -->
-  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- ✅ 완전 투명한 오버레이 (사진 잘 보이게) -->
+  <div class="absolute inset-0" style="background: rgba(0,0,0,0.25);"></div>
 
   <!-- 콘텐츠 -->
   <div class="relative z-10 max-w-3xl px-6">
@@ -126,6 +127,7 @@
     </a>
   </div>
 </section>
+
 
 
     <!-- 진료 안내 -->
