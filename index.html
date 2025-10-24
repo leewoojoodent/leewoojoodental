@@ -98,30 +98,25 @@
     <section id="home"></section>
 
   <!-- 인트로 배경 이후 본문 시작 -->
-<section id="premium"
-  class="relative w-full h-[90vh] flex flex-col items-center justify-center text-center text-white overflow-hidden border-4 border-red-500">
-  
-  <!-- ✅ 1. 배경 직접 지정 -->
-  <div class="absolute inset-0 bg-cover bg-center border-4 border-yellow-400"
-       style="background-image: url('desk.jpg.jpeg'); background-color: rgba(255,0,0,0.3);">
-  </div>
+<section id="premium" class="relative w-full h-[90vh] flex flex-col items-center justify-center text-center text-white overflow-hidden">
+  <!-- 배경 이미지 -->
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('desk.jpg'); opacity: 0.6;"></div>
 
-  <!-- ✅ 2. 반투명 오버레이 -->
-  <div class="absolute inset-0" style="background: rgba(0,0,0,0.2); border: 4px solid lime;"></div>
-
-  <!-- ✅ 3. 글자 -->
+  <!-- 콘텐츠 -->
   <div class="relative z-10 max-w-3xl px-6">
     <h1 class="text-4xl md:text-5xl font-semibold mb-6 tracking-tight">프리미엄 진료와 합리적인 가격</h1>
     <p class="text-lg text-gray-200 mb-10 leading-relaxed">
       교정, 임플란트, 심미보철, 턱관절, 치주, 보존 치료까지 — 환자에게 꼭 맞는 진료를 제공합니다.
     </p>
 
+    <!-- 네이버 예약 버튼 -->
     <a href="#"
        class="inline-flex items-center justify-center gap-2
               bg-[#03C75A] text-white font-semibold text-base
               px-6 py-3 rounded-full
               hover:bg-[#02b350] transition-all duration-300
               shadow-md hover:shadow-lg">
+      <!-- 네이버 로고 (SVG) -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-6 h-6">
         <path fill="#fff" d="M12 12h7.7l7.2 10.6V12H36v24h-7.7l-7.2-10.6V36H12z"/>
       </svg>
