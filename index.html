@@ -158,27 +158,27 @@
         <!-- 진료 포인트 카드  -->
         <div class="grid md:grid-cols-5 gap-6 mt-16">
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"a.png\" alt="라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src=\"./a.png\" alt="라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">라미네이트</h3>
             <p class="text-gray-600 text-sm leading-relaxed">자연스러운 색감과 투명도, 미소의 자신감을 회복합니다.</p>
           </div>
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"b.png\" alt="무삭제 라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src=\"./b.png\" alt="무삭제 라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">무삭제 라미네이트</h3>
             <p class="text-gray-600 text-sm leading-relaxed">치아를 거의 깎지 않고 심미 개선이 가능한 최소삭제 기술.</p>
           </div>
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"c.png\" alt="교정" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src=\"./c.png\" alt="교정" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">교정</h3>
             <p class="text-gray-600 text-sm leading-relaxed">치열의 균형을 맞추고, 기능과 심미를 함께 개선합니다.</p>
           </div>
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"d.png\" alt="보철" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src=\"./d.png\" alt="보철" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">보철</h3>
             <p class="text-gray-600 text-sm leading-relaxed">자연치와 조화를 이루는 정확한 색상과 형태로 복원합니다.</p>
           </div>
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"f.png\" alt="치아미백" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src=\"./f.png\" alt="치아미백" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">치아미백</h3>
             <p class="text-gray-600 text-sm leading-relaxed">자연스러운 밝기와 색조로 깨끗하고 건강한 미소를 완성합니다.</p>
           </div>
@@ -318,6 +318,36 @@
         window.scrollTo({ top: y, behavior: 'smooth' });
       });
     });
+  </script>
+  <script>
+    // ===== 이미지 표시 안 될 때 자동 폴백 =====
+    (function(){
+      const fallbackTable = {
+        'a.png': ['a.png','images/a.png','a.jpg','a.webp'],
+        'b.png': ['b.png','images/b.png','b.jpg','b.webp'],
+        'c.png': ['c.png','images/c.png','c.jpg','c.webp'],
+        'd.png': ['d.png','images/d.png','d.jpg','d.webp'],
+        'f.png': ['f.png','images/f.png','f.jpg','f.webp']
+      };
+
+      function attachFallback(img){
+        const src = img.getAttribute('src') || '';
+        const key = Object.keys(fallbackTable).find(k => src.endsWith(k));
+        if (!key) return;
+        const candidates = fallbackTable[key];
+        let i = 0;
+        img.addEventListener('error', function onErr(){
+          i++;
+          if (i >= candidates.length){ img.removeEventListener('error', onErr); return; }
+          const next = candidates[i];
+          // 중복 요청 방지용 캐시 버스팅은 하지 않음
+          img.src = next;
+          console.log('[IMG Fallback]', src, '→', next);
+        });
+      }
+
+      document.querySelectorAll('#esthetic img').forEach(attachFallback);
+    })();
   </script>
 </body>
 </html>
