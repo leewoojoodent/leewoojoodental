@@ -144,7 +144,7 @@
 
     <!-- 우리 치과의 심미 진료 철학 -->
     <section id="esthetic" class="relative w-full py-28 px-6 overflow-hidden bg-gradient-to-b from-white to-gray-50">
-      <div class="absolute inset-0 bg-[url('desk.png')] bg-cover bg-center opacity-10"></div>
+      <div class="absolute inset-0 bg-[url('desk.jpg.png')] bg-cover bg-center opacity-10"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-white/70 via-white/50 to-transparent backdrop-blur-sm"></div>
 
       <div class="relative z-10 max-w-5xl mx-auto text-center">
@@ -158,27 +158,27 @@
         <!-- 진료 포인트 카드  -->
         <div class="grid md:grid-cols-5 gap-6 mt-16">
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"a.png" alt="라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src="./a.png" alt="라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">라미네이트</h3>
             <p class="text-gray-600 text-sm leading-relaxed">자연스러운 색감과 투명도, 미소의 자신감을 회복합니다.</p>
           </div>
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"./b.png\" alt="무삭제 라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src="./b.png" alt="무삭제 라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">무삭제 라미네이트</h3>
             <p class="text-gray-600 text-sm leading-relaxed">치아를 거의 깎지 않고 심미 개선이 가능한 최소삭제 기술.</p>
           </div>
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"./c.png\" alt="교정" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src="./c.png" alt="교정" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">교정</h3>
             <p class="text-gray-600 text-sm leading-relaxed">치열의 균형을 맞추고, 기능과 심미를 함께 개선합니다.</p>
           </div>
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"./d.png\" alt="보철" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src="./d.png" alt="보철" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">보철</h3>
             <p class="text-gray-600 text-sm leading-relaxed">자연치와 조화를 이루는 정확한 색상과 형태로 복원합니다.</p>
           </div>
           <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src=\"./f.png\" alt="치아미백" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
+            <img src="./f.png" alt="치아미백" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
             <h3 class="text-lg font-semibold text-gray-900 mb-2">치아미백</h3>
             <p class="text-gray-600 text-sm leading-relaxed">자연스러운 밝기와 색조로 깨끗하고 건강한 미소를 완성합니다.</p>
           </div>
@@ -347,6 +347,69 @@
       }
 
       document.querySelectorAll('#esthetic img').forEach(attachFallback);
+    })();
+  </script>
+  <script>
+    // ===== 심미 아이콘 강제 진단 & 표시 보조 =====
+    (function(){
+      const map = [
+        { alt: '라미네이트', file: 'a.png' },
+        { alt: '무삭제 라미네이트', file: 'b.png' },
+        { alt: '교정', file: 'c.png' },
+        { alt: '보철', file: 'd.png' },
+        { alt: '치아미백', file: 'f.png' }
+      ];
+
+      const placeholder = (label) => 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        `<svg xmlns='http://www.w3.org/2000/svg' width='128' height='128'>
+           <rect width='100%' height='100%' fill='#e5e7eb'/>
+           <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' fill='#6b7280'>${label}</text>
+         </svg>`);
+
+      function ensureHelperText(img, text){
+        let p = img.parentElement.querySelector('.img-help');
+        if(!p){
+          p = document.createElement('p');
+          p.className = 'img-help text-xs text-red-600 mt-2';
+          img.parentElement.appendChild(p);
+        }
+        p.textContent = text;
+      }
+
+      document.querySelectorAll('#esthetic img').forEach((img)=>{
+        const item = map.find(m => (img.alt||'').trim() === m.alt);
+        if(!item) return;
+
+        // 1) 경로 강제 (같은 폴더)
+        const url = `./${item.file}`;
+        if(img.getAttribute('src') !== url){ img.setAttribute('src', url); }
+
+        // 2) 네트워크 상태 점검 (캐시 무시)
+        fetch(url, { cache:'no-store' })
+          .then(r => {
+            if(!r.ok){ throw new Error('HTTP '+r.status); }
+            // 로드 보조: 에러 발생 시에만 표시하므로 성공이면 도움문구 제거
+            const help = img.parentElement.querySelector('.img-help');
+            if(help) help.remove();
+          })
+          .catch(err => {
+            // 보더/플레이스홀더/도움문구 표시
+            img.style.outline = '2px solid #ef4444';
+            img.style.outlineOffset = '2px';
+            img.src = placeholder(item.file + ' 미발견');
+            ensureHelperText(img, `${item.file} 로드 실패 (${err.message}). index.html과 같은 폴더에 존재하는지 확인.`);
+            console.warn('[IMG CHECK]', item.file, err);
+          });
+
+        // 3) onerror(실제 이미지 태그 로드 실패) 대비
+        img.addEventListener('error', () => {
+          img.style.outline = '2px solid #ef4444';
+          img.style.outlineOffset = '2px';
+          img.src = placeholder(item.file + ' 에러');
+          ensureHelperText(img, `${item.file} 파일을 불러오지 못했습니다.`);
+        }, { once:true });
+
+      });
     })();
   </script>
 </body>
