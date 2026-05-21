@@ -54,6 +54,34 @@
       background: linear-gradient(to bottom, rgba(8, 19, 19, 0), rgba(8, 19, 19, 0.18));
       pointer-events: none;
     }
+    .general-care-image {
+      filter: saturate(1.02) contrast(1.02) brightness(1.06);
+    }
+    .general-care-crop {
+      position: absolute;
+      max-width: none;
+      filter: saturate(1.02) contrast(1.02) brightness(1.06);
+    }
+    .general-care-crop-ortho {
+      width: 444%;
+      left: -12%;
+      top: -94%;
+    }
+    .general-care-crop-aesthetic {
+      width: 381%;
+      left: -257%;
+      top: -75%;
+    }
+    .general-care-crop-implant {
+      width: 343%;
+      left: -10%;
+      top: -52%;
+    }
+    .general-care-crop-tmj {
+      width: 389%;
+      left: -25%;
+      top: -83%;
+    }
     .specialty-focus {
       position: absolute;
       inset: 0;
@@ -67,23 +95,23 @@
     }
     .specialty-ortho {
       background-image: url('ortho-care.jpg');
-      background-size: cover;
-      background-position: center 48%;
+      background-size: 390% auto;
+      background-position: 5% 44%;
     }
     .specialty-aesthetic {
       background-image: url('aesthetic-care.jpg');
-      background-size: cover;
-      background-position: center 48%;
+      background-size: 305% auto;
+      background-position: 97% 46%;
     }
     .specialty-implant {
       background-image: url('implant-care.jpg');
-      background-size: cover;
-      background-position: center 50%;
+      background-size: 305% auto;
+      background-position: 2% 44%;
     }
     .specialty-tmj {
       background-image: url('tmj-care.jpg');
-      background-size: cover;
-      background-position: center 48%;
+      background-size: 305% auto;
+      background-position: 50% 44%;
     }
     .signature-bg {
       background:
@@ -240,11 +268,10 @@
           치아 배열, 보철, 임플란트 상담까지 현재 상태를 정확히 보고 환자의 상황에 맞는 치료 방향을 차분히 안내합니다.
         </p>
       </div>
-      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
-          <div class="specialty-image-wrap relative h-64 overflow-hidden bg-[#eef4f2]">
-            <div class="specialty-focus specialty-blur specialty-ortho"></div>
-            <div class="specialty-focus specialty-ortho"></div>
+          <div class="specialty-image-wrap relative h-52 overflow-hidden bg-white">
+            <img src="ortho-care.jpg" alt="교정치료" class="general-care-crop general-care-crop-ortho" />
             <span class="absolute bottom-5 left-5 z-10 rounded-full bg-[#173f38]/88 px-4 py-2 text-sm font-semibold text-white backdrop-blur">균형 잡힌 배열</span>
           </div>
           <div class="p-8">
@@ -253,9 +280,8 @@
           </div>
         </article>
         <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
-          <div class="specialty-image-wrap relative h-64 overflow-hidden bg-[#f3f1ea]">
-            <div class="specialty-focus specialty-blur specialty-aesthetic"></div>
-            <div class="specialty-focus specialty-aesthetic"></div>
+          <div class="specialty-image-wrap relative h-52 overflow-hidden bg-white">
+            <img src="aesthetic-care.jpg" alt="심미보철" class="general-care-crop general-care-crop-aesthetic" />
             <span class="absolute bottom-5 left-5 z-10 rounded-full bg-[#6a411a]/88 px-4 py-2 text-sm font-semibold text-white backdrop-blur">자연스러운 심미성</span>
           </div>
           <div class="p-8">
@@ -264,9 +290,8 @@
           </div>
         </article>
         <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
-          <div class="specialty-image-wrap relative h-64 overflow-hidden bg-[#eef4f2]">
-            <div class="specialty-focus specialty-blur specialty-implant"></div>
-            <div class="specialty-focus specialty-implant"></div>
+          <div class="specialty-image-wrap relative h-52 overflow-hidden bg-white">
+            <img src="implant-care.jpg" alt="임플란트" class="general-care-crop general-care-crop-implant" />
             <span class="absolute bottom-5 left-5 z-10 rounded-full bg-neutral-950/82 px-4 py-2 text-sm font-semibold text-white backdrop-blur">정밀한 식립 계획</span>
           </div>
           <div class="p-8">
@@ -275,9 +300,8 @@
           </div>
         </article>
         <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
-          <div class="specialty-image-wrap relative h-64 overflow-hidden bg-[#f3f1ea]">
-            <div class="specialty-focus specialty-blur specialty-tmj"></div>
-            <div class="specialty-focus specialty-tmj"></div>
+          <div class="specialty-image-wrap relative h-52 overflow-hidden bg-white">
+            <img src="tmj-care.jpg" alt="턱관절" class="general-care-crop general-care-crop-tmj" />
             <span class="absolute bottom-5 left-5 z-10 rounded-full bg-[#173f38]/88 px-4 py-2 text-sm font-semibold text-white backdrop-blur">턱의 균형과 기능</span>
           </div>
           <div class="p-8">
@@ -344,7 +368,7 @@
             <p class="text-sm font-semibold tracking-[0.22em] text-neutral-400">DIRECTOR</p>
             <h3 class="mt-3 text-4xl font-semibold tracking-[-0.055em]">이우주 원장</h3>
             <p class="mt-5 text-lg font-medium text-neutral-700">통합치과전문의</p>
-            <ul class="mt-8 space-y-3 text-sm leading-7 text-neutral-600">
+            <ul class="mt-6 space-y-2.5 text-sm leading-6 text-neutral-600">
               <li>경북대학교 치과대학 졸업</li>
               <li>Columbia University 보철 · 임플란트 과정 수료</li>
               <li>NY Columbia Dental Clinic, Aesthetic dentistry chief</li>
