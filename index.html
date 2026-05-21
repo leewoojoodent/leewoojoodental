@@ -1,416 +1,260 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>이우주치과</title>
-  <meta name="description" content="이우주치과 — 정직하고 세심한 진료로 환자 맞춤형 심미·교정·보철 치료를 제공합니다." />
-  <link rel="preload" href="intro2.jpg" as="image" />
+  <title>이우주치과 | 12년의 신뢰, 정직한 치과진료</title>
+  <meta name="description" content="12년 이상 지역에서 신뢰를 쌓아온 이우주치과. 교정, 심미보철, 임플란트 중심의 정직하고 섬세한 진료." />
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
-    :root { --header-h: 88px; }
-
-    /* 초기 상태: 깜빡임 방지 */
-    body { margin: 0; background: #fff; overflow: hidden; visibility: hidden; }
-
-    /* ===== 인트로 (로고 줌인 + 화이트 글로우) ===== */
-    #intro2 {
-      position: fixed; top: 50%; left: 50%; height: 150px; width: auto;
-      opacity: 0; transform: translate(-50%, -50%) scale(0.9);
-      z-index: 101;
-      animation: logoAppearFade 5s ease-in-out forwards;
-      filter: drop-shadow(0 0 0 rgba(255,255,255,0));
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Noto Sans KR', system-ui, sans-serif; }
+    .glass { background: rgba(255,255,255,0.78); backdrop-filter: blur(18px); }
+    .hero-bg {
+      background:
+        linear-gradient(rgba(10, 18, 28, 0.58), rgba(10, 18, 28, 0.68)),
+        url('intro.jpg') center/cover no-repeat;
     }
-
-    @keyframes logoAppearFade {
-      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
-      15% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 25px rgba(255,255,255,0.7)); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); filter: drop-shadow(0 0 45px rgba(255,255,255,0.9)); }
-      75% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.15); filter: drop-shadow(0 0 30px rgba(255,255,255,0.6)); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+    .soft-bg {
+      background:
+        linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.93)),
+        url('desk.jpg') center/cover no-repeat;
     }
-
-    /* 모션 민감 사용자 배려 */
-    @media (prefers-reduced-motion: reduce) {
-      #intro2 { animation: none; opacity: 1; }
+    .fade-up { animation: fadeUp .9s ease both; }
+    .fade-up-delay { animation: fadeUp .9s ease .18s both; }
+    .fade-up-delay2 { animation: fadeUp .9s ease .34s both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    /* ===== 홈 섹션 (인트로 배경화면) ===== */
-    #home {
-      position: relative; width: 100%; height: 100vh;
-      background: url('intro.jpg') center center / cover no-repeat;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; color: white;
-    }
-    #home::after {
-      content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.25); z-index: 0;
-    }
-
-    /* ===== 메인페이지 페이드인 ===== */
-    header, #main-content { opacity: 0; transition: opacity 1.2s ease-in; }
-    header.show, #main-content.show { opacity: 1; }
-
-    /* 고정 헤더로 인한 앵커 가림 방지 */
-    section { scroll-margin-top: var(--header-h); }
-
-    html { scroll-behavior: smooth; }
   </style>
 </head>
-
-<body>
-  <!-- 인트로 (로고만) -->
-  <img id="intro2" src="intro2.jpg" alt="이우주치과 로고 인트로" height="150" width="150" decoding="async" />
-
-  <!-- 헤더 -->
-  <header class="w-full border-b bg-white/80 backdrop-blur fixed top-0 left-0 z-40">
-    <div class="max-w-6xl mx-auto flex items-center py-3 px-6">
-      <img src="logo.png" alt="이우주치과 로고" class="object-contain mr-6" style="height: 80px; width: auto;" loading="eager" />
-      <nav class="flex space-x-6 text-gray-800 text-base font-medium ml-auto">
-        <a href="#home" class="hover:text-gray-500 transition">홈</a>
-        <a href="#services" class="hover:text-gray-500 transition">진료안내</a>
-        <a href="#doctors" class="hover:text-gray-500 transition">의료진소개</a>
-        <a href="#gallery" class="hover:text-gray-500 transition">전후사진</a>
-        <a href="#location" class="hover:text-gray-500 transition">오시는 길</a>
+<body class="bg-[#f7f5f1] text-[#171717] antialiased">
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/20 bg-white/75 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#home" class="flex items-center gap-3">
+        <img src="logo.png" alt="이우주치과 로고" class="h-9 w-auto" onerror="this.style.display='none'" />
+        <div>
+          <div class="text-lg font-semibold tracking-[-0.03em]">이우주치과</div>
+          <div class="text-[11px] text-neutral-500">Lee Woo Joo Dental Clinic</div>
+        </div>
+      </a>
+      <nav class="hidden items-center gap-8 text-sm font-medium text-neutral-700 md:flex">
+        <a href="#philosophy" class="hover:text-black">진료철학</a>
+        <a href="#specialty" class="hover:text-black">전문진료</a>
+        <a href="#doctor" class="hover:text-black">의료진</a>
+        <a href="#review" class="hover:text-black">리뷰</a>
+        <a href="#location" class="hover:text-black">오시는 길</a>
       </nav>
+      <a href="https://naver.me/GbDLIRZB" target="_blank" class="rounded-full bg-[#03C75A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#02b350]">
+        네이버 예약
+      </a>
     </div>
   </header>
 
-  <!-- 메인 콘텐츠 -->
-  <main id="main-content" class="pt-24 flex flex-col items-center text-center px-6">
-
-    <!-- 홈 (인트로 배경화면만 표시) -->
-    <section id="home" aria-label="인트로"></section>
-
-    <!-- 프리미엄 섹션 -->
-    <section id="premium" class="relative w-full h-[90vh] flex flex-col items-center justify-center text-center overflow-hidden bg-white">
-      <!-- 배경 이미지 (파일명 정리: desk.png 로 통일) -->
-      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('desk.jpg.png'); z-index: 0;"></div>
-      <!-- 부드러운 밝기 조정 -->
-      <div class="absolute inset-0" style="background: rgba(255,255,255,0.3); z-index: 1;"></div>
-
-      <!-- 콘텐츠 -->
-      <div class="relative z-20 max-w-4xl px-6">
-        <h1 class="text-5xl md:text-7xl font-semibold mb-8 tracking-tight text-[#111111] drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)] leading-tight">
-          프리미엄 진료와<br class="md:hidden" /> 합리적인 가격
-        </h1>
-        <p class="text-2xl md:text-3xl text-gray-800 mb-12 leading-relaxed font-light">
-          세심한 진료, 정직한 가격 — 환자에게 꼭 맞는 치료를 제공합니다.
+  <!-- Hero -->
+  <section id="home" class="hero-bg flex min-h-screen items-center pt-24 text-white">
+    <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 lg:grid-cols-[1.05fr_.95fr] lg:px-8">
+      <div>
+        <p class="fade-up mb-5 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur">
+          12년 이상, 광고보다 진료로 쌓아온 신뢰
         </p>
-        <a href="#" class="inline-flex items-center justify-center gap-3 bg-[#03C75A] text-white font-semibold text-lg px-8 py-4 rounded-full hover:bg-[#02b350] transition-all duration-300 shadow-lg hover:shadow-xl" aria-label="네이버 예약">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-8 h-8" aria-hidden="true"><path fill="#fff" d="M12 12h7.7l7.2 10.6V12H36v24h-7.7l-7.2-10.6V36H12z"/></svg>
-          네이버 예약
+        <h1 class="fade-up-delay max-w-4xl text-5xl font-semibold leading-[1.08] tracking-[-0.06em] md:text-7xl">
+          오래 다닐 수 있는 치과는<br />결국, 진료가 말합니다.
+        </h1>
+        <p class="fade-up-delay2 mt-7 max-w-2xl text-lg leading-8 text-white/82 md:text-xl">
+          이우주치과는 교정, 심미보철, 임플란트 진료를 중심으로 환자에게 필요한 치료를 정직하게 설명하고, 오래 안정적으로 유지되는 결과를 목표로 합니다.
+        </p>
+        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+          <a href="https://naver.me/GbDLIRZB" target="_blank" class="inline-flex items-center justify-center rounded-full bg-[#03C75A] px-8 py-4 text-base font-semibold text-white shadow-xl shadow-black/20 transition hover:bg-[#02b350]">
+            네이버 예약하기
+          </a>
+          <a href="#specialty" class="inline-flex items-center justify-center rounded-full border border-white/35 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur transition hover:bg-white/18">
+            진료 분야 보기
+          </a>
+        </div>
+      </div>
+      <div class="fade-up-delay2 rounded-[2.2rem] border border-white/20 bg-white/12 p-6 shadow-2xl backdrop-blur-xl">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-[1.5rem] bg-white/92 p-6 text-neutral-900">
+            <div class="text-4xl font-semibold tracking-[-0.05em]">12년+</div>
+            <p class="mt-2 text-sm leading-6 text-neutral-600">지역에서 꾸준히 운영해온 진료 경험</p>
+          </div>
+          <div class="rounded-[1.5rem] bg-white/92 p-6 text-neutral-900">
+            <div class="text-4xl font-semibold tracking-[-0.05em]">108개</div>
+            <p class="mt-2 text-sm leading-6 text-neutral-600">환자들이 자발적으로 남긴 네이버 리뷰</p>
+          </div>
+          <div class="col-span-2 rounded-[1.5rem] bg-white/92 p-6 text-neutral-900">
+            <div class="text-sm font-semibold text-neutral-500">주요 진료</div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium">교정치료</span>
+              <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium">심미보철</span>
+              <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium">임플란트</span>
+              <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium">라미네이트</span>
+            </div>
+            <p class="mt-5 text-sm leading-7 text-neutral-600">
+              무리한 할인보다, 정상적인 수가와 책임 있는 진료를 지향합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section id="philosophy" class="bg-white py-28 md:py-36">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-neutral-400">OUR STANDARD</p>
+        <h2 class="text-4xl font-semibold tracking-[-0.055em] text-neutral-950 md:text-6xl">과장하지 않고,<br />필요한 치료를 정확하게.</h2>
+        <p class="mt-7 text-lg leading-8 text-neutral-600">
+          치과 치료는 한 번의 선택이 오래 남습니다. 이우주치과는 환자가 이해할 수 있는 설명, 치료 전후의 명확한 기준, 장기적인 유지까지 고려한 진료를 중요하게 생각합니다.
+        </p>
+      </div>
+      <div class="mt-16 grid gap-5 md:grid-cols-3">
+        <article class="rounded-[2rem] bg-[#f7f5f1] p-8">
+          <div class="mb-8 text-5xl">01</div>
+          <h3 class="text-2xl font-semibold tracking-[-0.04em]">정직한 진단</h3>
+          <p class="mt-4 leading-7 text-neutral-600">필요하지 않은 치료를 권하지 않고, 가능한 선택지를 충분히 설명합니다.</p>
+        </article>
+        <article class="rounded-[2rem] bg-[#f7f5f1] p-8">
+          <div class="mb-8 text-5xl">02</div>
+          <h3 class="text-2xl font-semibold tracking-[-0.04em]">섬세한 심미 기준</h3>
+          <p class="mt-4 leading-7 text-neutral-600">치아만 보는 것이 아니라 얼굴형, 웃는 선, 잇몸 라인까지 함께 고려합니다.</p>
+        </article>
+        <article class="rounded-[2rem] bg-[#f7f5f1] p-8">
+          <div class="mb-8 text-5xl">03</div>
+          <h3 class="text-2xl font-semibold tracking-[-0.04em]">오래 가는 결과</h3>
+          <p class="mt-4 leading-7 text-neutral-600">당장의 변화보다 치료 후 안정성과 유지 관리까지 생각합니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialty -->
+  <section id="specialty" class="soft-bg py-28 md:py-36">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div class="mb-16 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div>
+          <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-neutral-400">SPECIALTY CARE</p>
+          <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl">잘하는 진료에<br />집중합니다.</h2>
+        </div>
+        <p class="max-w-xl text-lg leading-8 text-neutral-600">
+          교정, 심미보철, 임플란트는 계획과 기준이 결과를 좌우합니다. 이우주치과는 기능과 심미가 함께 맞는 치료를 목표로 합니다.
+        </p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
+          <img src="align.png" alt="교정치료" class="h-64 w-full object-cover" />
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold tracking-[-0.04em]">교정치료</h3>
+            <p class="mt-4 leading-7 text-neutral-600">배열만 맞추는 교정이 아니라, 교합과 얼굴 조화까지 고려한 교정 계획을 세웁니다.</p>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
+          <img src="crown.png" alt="심미보철" class="h-64 w-full object-cover" />
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold tracking-[-0.04em]">심미보철</h3>
+            <p class="mt-4 leading-7 text-neutral-600">자연스러운 색감, 형태, 잇몸 라인을 고려해 티 나지 않는 아름다움을 추구합니다.</p>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
+          <img src="implant.png" alt="임플란트" class="h-64 w-full object-cover" onerror="this.src='1.png'" />
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold tracking-[-0.04em]">임플란트</h3>
+            <p class="mt-4 leading-7 text-neutral-600">정확한 진단과 보철 중심 계획으로 씹는 힘과 유지 안정성을 함께 고려합니다.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctor -->
+  <section id="doctor" class="bg-[#111827] py-28 text-white md:py-36">
+    <div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
+      <div>
+        <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-white/40">DOCTOR</p>
+        <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl">대표원장이<br />처음부터 끝까지.</h2>
+        <p class="mt-7 text-lg leading-8 text-white/68">
+          오랜 기간 한 자리에서 쌓은 진료 경험을 바탕으로, 환자에게 꼭 맞는 치료 방향을 제안합니다.
+        </p>
+      </div>
+      <div class="rounded-[2.4rem] bg-white p-5 text-neutral-950 md:p-8">
+        <div class="grid gap-8 md:grid-cols-[.85fr_1.15fr] md:items-center">
+          <img src="doctor1.jpg" alt="원장 이우주" class="h-[420px] w-full rounded-[1.8rem] object-cover" />
+          <div>
+            <p class="text-sm font-semibold tracking-[0.22em] text-neutral-400">DIRECTOR</p>
+            <h3 class="mt-3 text-4xl font-semibold tracking-[-0.055em]">이우주 원장</h3>
+            <p class="mt-5 text-lg font-medium text-neutral-700">통합치과전문의 · 임플란트 · 교정 · 심미보철</p>
+            <ul class="mt-8 space-y-3 text-sm leading-7 text-neutral-600">
+              <li>경북대학교 치과대학 졸업</li>
+              <li>Columbia University 보철 · 임플란트 과정 수료</li>
+              <li>대한심미치과학회 · 대한구강악안면임플란트학회 회원</li>
+              <li>교정, 심미보철, 임플란트 중심 진료</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Review -->
+  <section id="review" class="bg-white py-28 md:py-36">
+    <div class="mx-auto max-w-7xl px-5 text-center lg:px-8">
+      <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-neutral-400">REAL REVIEWS</p>
+      <h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-[-0.055em] md:text-6xl">부탁해서 만든 리뷰가 아니라,<br />환자들이 남겨준 신뢰입니다.</h2>
+      <p class="mx-auto mt-7 max-w-2xl text-lg leading-8 text-neutral-600">
+        네이버 플레이스에 등록된 108개의 리뷰는 이우주치과가 지역에서 어떤 태도로 진료해왔는지 보여주는 가장 좋은 증거입니다.
+      </p>
+      <div class="mx-auto mt-12 max-w-3xl rounded-[2rem] bg-[#f7f5f1] p-8 md:p-12">
+        <div class="text-7xl font-semibold tracking-[-0.07em]">108</div>
+        <p class="mt-3 text-lg font-medium text-neutral-700">네이버 플레이스 자발 리뷰</p>
+        <a href="https://naver.me/GbDLIRZB" target="_blank" class="mt-8 inline-flex rounded-full bg-neutral-950 px-8 py-4 font-semibold text-white transition hover:bg-neutral-800">
+          네이버 플레이스 보기
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 이우주치과의 철학 (강조 버전) -->
-    <section id="philosophy" class="relative w-full py-32 px-6 overflow-hidden bg-gradient-to-b from-white to-gray-50 text-center">
-      <div class="absolute inset-0 bg-[url('desk.jpg.png')] bg-cover bg-center opacity-5"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-white/70 to-gray-50/80 backdrop-blur-sm"></div>
+  <!-- CTA -->
+  <section class="bg-[#f7f5f1] px-5 py-24">
+    <div class="mx-auto max-w-6xl rounded-[2.6rem] bg-neutral-950 px-6 py-16 text-center text-white md:px-12 md:py-24">
+      <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl">치료를 미루고 있다면,<br />먼저 정확히 상담받아보세요.</h2>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/68">
+        부담스럽게 권유하지 않습니다. 현재 상태와 가능한 선택지를 차분히 설명드리겠습니다.
+      </p>
+      <a href="https://naver.me/GbDLIRZB" target="_blank" class="mt-10 inline-flex rounded-full bg-[#03C75A] px-9 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-[#02b350]">
+        네이버 예약하기
+      </a>
+    </div>
+  </section>
 
-      <div class="relative z-10 max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-6xl font-bold mb-10 text-gray-900 tracking-tight">이우주치과의 철학</h2>
-        <p class="text-2xl md:text-3xl text-gray-700 mb-16 leading-relaxed font-light">
-          환자를 위한 진심과 정직함, 그리고 세심함으로<br class="hidden md:block"/>
-          <span class="font-semibold text-[#03C75A]">‘치과의 새로운 기준’</span>을 만들어갑니다.
-        </p>
-
-        <!-- 3가지 철학 카드 -->
-        <div class="grid md:grid-cols-3 gap-10 mt-10">
-          <div class="bg-white/90 rounded-3xl shadow-md hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-500 p-10 border border-gray-100">
-            <div class="text-5xl mb-4 text-[#03C75A] font-light">01</div>
-            <h3 class="text-2xl font-semibold text-gray-900 mb-3">정직한 진료</h3>
-            <p class="text-gray-600 leading-relaxed">불필요한 치료는 권하지 않습니다.<br>환자의 입장에서 가장 필요한 치료만을 제안합니다.</p>
-          </div>
-          <div class="bg-white/90 rounded-3xl shadow-md hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-500 p-10 border border-gray-100">
-            <div class="text-5xl mb-4 text-[#03C75A] font-light">02</div>
-            <h3 class="text-2xl font-semibold text-gray-900 mb-3">세심한 치료</h3>
-            <p class="text-gray-600 leading-relaxed">미세 단위까지 꼼꼼하게 확인하며,<br>통증을 최소화하고 정밀한 치료를 제공합니다.</p>
-          </div>
-          <div class="bg-white/90 rounded-3xl shadow-md hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-500 p-10 border border-gray-100">
-            <div class="text-5xl mb-4 text-[#03C75A] font-light">03</div>
-            <h3 class="text-2xl font-semibold text-gray-900 mb-3">환자 중심</h3>
-            <p class="text-gray-600 leading-relaxed">환자의 불안감을 이해하고,<br>진료 전후 모든 과정을 함께합니다.</p>
-          </div>
+  <!-- Location -->
+  <section id="location" class="bg-white py-24">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
+      <div>
+        <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-neutral-400">LOCATION</p>
+        <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-5xl">오시는 길</h2>
+        <div class="mt-8 space-y-4 text-neutral-700">
+          <p><strong>이우주치과</strong></p>
+          <p>주소를 입력하세요</p>
+          <p>진료시간을 입력하세요</p>
+          <p>전화번호를 입력하세요</p>
         </div>
       </div>
-    </section>
-
-    <!-- "그리고" 전환 섹션 (잘못된 py-66 → py-28로 수정) -->
-    <section id="transition" class="w-full py-28 text-center bg-white">
-      <h2 class="text-6xl md:text-8xl font-extrabold tracking-tight text-gray-900 leading-none">그리고</h2>
-    </section>
-
-    <!-- 우리 치과의 심미 진료 철학 -->
-    <section id="esthetic" class="relative w-full py-28 px-6 overflow-hidden bg-gradient-to-b from-white to-gray-50">
-      <div class="absolute inset-0 bg-[url('desk.jpg.png')] bg-cover bg-center opacity-10"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-white/70 via-white/50 to-transparent backdrop-blur-sm"></div>
-
-      <div class="relative z-10 max-w-5xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8">이우주치과의 심미 진료</h2>
-        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed mb-12 font-light">
-          우리는 <span class="font-semibold text-[#03C75A]">환자 개개인의 아름다움과 자신감</span>을 되찾아드리기 위해,<br class="hidden md:block" />
-          라미네이트, 무삭제 라미네이트(치아 최소삭제), 교정, 보철, 치아미백을 조합하여<br class="hidden md:block" />
-          <span class="font-semibold text-gray-900">치아의 건강을 해치지 않는 범위 내에서</span> 진료합니다.
-        </p>
-
-        <!-- 진료 포인트 카드  -->
-        <div class="grid md:grid-cols-5 gap-6 mt-16">
-          <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src="./a.png" alt="라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">라미네이트</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">자연스러운 색감과 투명도, 미소의 자신감을 회복합니다.</p>
-          </div>
-          <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src="./b.png" alt="무삭제 라미네이트" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">무삭제 라미네이트</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">치아를 거의 깎지 않고 심미 개선이 가능한 최소삭제 기술.</p>
-          </div>
-          <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src="./c.png" alt="교정" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">교정</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">치열의 균형을 맞추고, 기능과 심미를 함께 개선합니다.</p>
-          </div>
-          <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src="./d.png" alt="보철" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">보철</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">자연치와 조화를 이루는 정확한 색상과 형태로 복원합니다.</p>
-          </div>
-          <div class="bg-white rounded-2xl shadow hover:shadow-2xl transition-all duration-500 p-6 border border-gray-100 flex flex-col items-center">
-            <img src="./f.png" alt="치아미백" class="w-16 h-16 mb-4 opacity-80" loading="lazy" decoding="async" />
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">치아미백</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">자연스러운 밝기와 색조로 깨끗하고 건강한 미소를 완성합니다.</p>
-          </div>
-        </div>
-
-        <p class="text-xl md:text-2xl text-gray-800 mt-20 font-medium">
-          단순히 ‘하얗고 고른 치아’가 아니라,<br class="hidden md:block" />
-          <span class="text-[#03C75A] font-semibold">당신의 얼굴과 조화되는 자연스러운 아름다움</span>을 추구합니다.
-        </p>
-      </div>
-    </section>
-
-    <!-- 진료 안내 -->
-    <section id="services" class="w-full max-w-6xl mx-auto py-24 px-6 text-center border-t bg-white">
-      <h2 class="text-3xl font-bold mb-8">진료 안내</h2>
-      <div class="grid md:grid-cols-4 gap-10">
-        <div class="bg-white rounded-2xl shadow hover:shadow-xl transition-all duration-500 p-4">
-          <img src="1.png" alt="교정치료" class="w-full h-52 object-cover rounded-2xl mb-4 hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
-          <h3 class="font-semibold text-lg mb-2">교정치료</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">맞춤형 교정 시스템으로 편안하고 정확한 교정 치료를 제공합니다.</p>
-        </div>
-        <div class="bg-white rounded-2xl shadow hover:shadow-xl transition-all duration-500 p-4">
-          <img src="2.png" alt="임플란트" class="w-full h-52 object-cover rounded-2xl mb-4 hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
-          <h3 class="font-semibold text-lg mb-2">임플란트</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">풍부한 임상 경험으로 자연치아와 같은 기능을 회복시켜 드립니다.</p>
-        </div>
-        <div class="bg-white rounded-2xl shadow hover:shadow-xl transition-all duration-500 p-4">
-          <img src="4.png" alt="심미보철" class="w-full h-52 object-cover rounded-2xl mb-4 hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
-          <h3 class="font-semibold text-lg mb-2">심미보철</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">자연스러운 색상과 형태로 아름다운 미소를 완성합니다.</p>
-        </div>
-        <div class="bg-white rounded-2xl shadow hover:shadow-xl transition-all duration-500 p-4">
-          <img src="3.png" alt="치주 · 턱관절" class="w-full h-52 object-cover rounded-2xl mb-4 hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
-          <h3 class="font-semibold text-lg mb-2">치주 · 턱관절</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">잇몸과 턱관절 건강을 지켜주는 세심한 진료를 제공합니다.</p>
+      <div class="overflow-hidden rounded-[2rem] bg-neutral-100 p-6">
+        <div class="flex h-[380px] items-center justify-center rounded-[1.5rem] bg-neutral-200 text-center text-neutral-500">
+          네이버 지도 또는 카카오맵 임베드 영역<br />iframe 코드를 여기에 넣으세요
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 의료진 소개 -->
-    <section id="doctors" class="w-full max-w-6xl mx-auto py-24 px-6 text-center border-t bg-white">
-      <h2 class="text-3xl font-bold mb-8 text-gray-900">의료진 소개</h2>
-      <div class="flex flex-col md:flex-row items-center justify-center gap-12">
-        <img src="doctor1.jpg" alt="원장 이우주" class="w-56 h-56 rounded-full object-cover shadow-md" loading="lazy" decoding="async" />
-        <div class="text-left max-w-md">
-          <h3 class="text-2xl font-semibold mb-2 text-gray-900">원장 이우주</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">환자 한 분 한 분의 상태에 맞는 최적의 진료를 위해<br>정직하고 세심한 치료를 약속드립니다.</p>
-          <ul class="text-gray-700 text-sm leading-relaxed space-y-1">
-            <li>청담고등학교 졸업</li>
-            <li>경북대학교 치과대학 졸업</li>
-            <li>통합치과전문의 (임플란트 · 교정 · 심미보철)</li>
-            <li>미국 Columbia University 보철 연수 과정 수료</li>
-            <li>미국 Columbia University 임플란트 연수 과정 수료</li>
-            <li>미국 Columbia Continuum Fellow</li>
-            <li>미국 Columbia University 임상연구회 정회원</li>
-            <li>대한치주과학회 정회원</li>
-            <li>대한구강악안면임플란트학회 정회원</li>
-            <li>대한심미치과학회 정회원</li>
-            <li>대한치과정보통신협회 이사</li>
-            <li>NY Columbia Dental Clinic 치과 임플란트·보철 (前 원장)</li>
-            <li>연세제이교정치과 (前 부원장)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- 전후 사진 -->
-    <section id="gallery" class="w-full max-w-6xl mx-auto py-24 px-6 text-center border-t">
-      <h2 class="text-3xl font-bold mb-8">전후 사진</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div><img src="beforeafter1.jpg" alt="전후1" class="w-full rounded-2xl shadow" loading="lazy" decoding="async" /></div>
-        <div><img src="beforeafter2.jpg" alt="전후2" class="w-full rounded-2xl shadow" loading="lazy" decoding="async" /></div>
-        <div><img src="beforeafter3.jpg" alt="전후3" class="w-full rounded-2xl shadow" loading="lazy" decoding="async" /></div>
-      </div>
-      <p class="text-gray-500 text-sm mt-6">(이미지는 환자 동의 하에 게재되었습니다.)</p>
-    </section>
-
-    <!-- 오시는 길 -->
-    <section id="location" class="w-full max-w-6xl mx-auto py-24 px-6 border-t bg-white">
-      <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">오시는 길</h2>
-
-      <div class="max-w-3xl mx-auto text-center text-gray-700 leading-relaxed mb-10">
-        <p class="text-gray-700 mb-4">서울특별시 영등포구 대림동 952-19<br>삼성YJ그랜드빌딩 3층, 이우주치과</p>
-        <p class="text-gray-700 mb-2">🚇 <strong>지하철</strong>: 2호선 신대방역 3번출구 도보 약 6분, 구로디지털단지역 6번 출구 도보 10분, 보라매역 3번출구 도보 10분</p>
-        <p class="text-gray-700 mb-2">🚌 <strong>버스</strong>: 강남성심병원·대림성모병원 정류장 하차<br>(150, 505, 5531, 5616, 5625번 등)</p>
-        <p class="text-gray-700">✈️ <strong>공항 리무진</strong>: 인천공항 ↔ 신대방 인근 6017번 이용 가능</p>
-      </div>
-
-      <!-- ✅ 네이버지도 퍼가기: src 속성의 여분 따옴표 제거 -->
-      <div class="w-full max-w-4xl mx-auto h-96 rounded-2xl overflow-hidden shadow-lg">
-        <iframe 
-          src="https://naver.me/FJIkwney"
-          width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title="네이버 지도">
-        </iframe>
-      </div>
-    </section>
-
-  </main>
-
-  <script defer>
-    const body = document.body;
-    const intro2 = document.getElementById('intro2');
-    const header = document.querySelector('header');
-    const main = document.getElementById('main-content');
-
-    // 인트로 이미지 로딩 후 실행 + 타임아웃 폴백(3.5초)
-    let revealed = false;
-    const reveal = () => {
-      if (revealed) return; revealed = true;
-      body.style.visibility = 'visible';
-      intro2.style.display = 'none';
-      header.classList.add('show');
-      main.classList.add('show');
-      setTimeout(() => { body.style.overflowY = 'scroll'; }, 400);
-    };
-
-    const onLoad = () => {
-      body.style.visibility = 'visible';
-      body.style.overflow = 'hidden';
-      // 인트로 애니 끝난 직후 전환
-      setTimeout(reveal, 5000);
-    };
-
-    // 로드/에러/타임아웃 처리
-    intro2.addEventListener('load', onLoad);
-    intro2.addEventListener('error', reveal);
-    setTimeout(() => { if (!revealed) reveal(); }, 3500);
-
-    // iOS 사파리에서 anchor 스크롤 시 점프 보정
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        const target = document.querySelector(id);
-        if (!target) return;
-        e.preventDefault();
-        const y = target.getBoundingClientRect().top + window.pageYOffset - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'));
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      });
-    });
-  </script>
-  <script>
-    // ===== 이미지 표시 안 될 때 자동 폴백 =====
-    (function(){
-      const fallbackTable = {
-        'a.png': ['a.png','images/a.png','a.jpg','a.webp'],
-        'b.png': ['b.png','images/b.png','b.jpg','b.webp'],
-        'c.png': ['c.png','images/c.png','c.jpg','c.webp'],
-        'd.png': ['d.png','images/d.png','d.jpg','d.webp'],
-        'f.png': ['f.png','images/f.png','f.jpg','f.webp']
-      };
-
-      function attachFallback(img){
-        const src = img.getAttribute('src') || '';
-        const key = Object.keys(fallbackTable).find(k => src.endsWith(k));
-        if (!key) return;
-        const candidates = fallbackTable[key];
-        let i = 0;
-        img.addEventListener('error', function onErr(){
-          i++;
-          if (i >= candidates.length){ img.removeEventListener('error', onErr); return; }
-          const next = candidates[i];
-          // 중복 요청 방지용 캐시 버스팅은 하지 않음
-          img.src = next;
-          console.log('[IMG Fallback]', src, '→', next);
-        });
-      }
-
-      document.querySelectorAll('#esthetic img').forEach(attachFallback);
-    })();
-  </script>
-  <script>
-    // ===== 심미 아이콘 강제 진단 & 표시 보조 =====
-    (function(){
-      const map = [
-        { alt: '라미네이트', file: 'a.png' },
-        { alt: '무삭제 라미네이트', file: 'b.png' },
-        { alt: '교정', file: 'c.png' },
-        { alt: '보철', file: 'd.png' },
-        { alt: '치아미백', file: 'f.png' }
-      ];
-
-      const placeholder = (label) => 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
-        `<svg xmlns='http://www.w3.org/2000/svg' width='128' height='128'>
-           <rect width='100%' height='100%' fill='#e5e7eb'/>
-           <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' fill='#6b7280'>${label}</text>
-         </svg>`);
-
-      function ensureHelperText(img, text){
-        let p = img.parentElement.querySelector('.img-help');
-        if(!p){
-          p = document.createElement('p');
-          p.className = 'img-help text-xs text-red-600 mt-2';
-          img.parentElement.appendChild(p);
-        }
-        p.textContent = text;
-      }
-
-      document.querySelectorAll('#esthetic img').forEach((img)=>{
-        const item = map.find(m => (img.alt||'').trim() === m.alt);
-        if(!item) return;
-
-        // 1) 경로 강제 (같은 폴더)
-        const url = `./${item.file}`;
-        if(img.getAttribute('src') !== url){ img.setAttribute('src', url); }
-
-        // 2) 네트워크 상태 점검 (캐시 무시)
-        fetch(url, { cache:'no-store' })
-          .then(r => {
-            if(!r.ok){ throw new Error('HTTP '+r.status); }
-            // 로드 보조: 에러 발생 시에만 표시하므로 성공이면 도움문구 제거
-            const help = img.parentElement.querySelector('.img-help');
-            if(help) help.remove();
-          })
-          .catch(err => {
-            // 보더/플레이스홀더/도움문구 표시
-            img.style.outline = '2px solid #ef4444';
-            img.style.outlineOffset = '2px';
-            img.src = placeholder(item.file + ' 미발견');
-            ensureHelperText(img, `${item.file} 로드 실패 (${err.message}). index.html과 같은 폴더에 존재하는지 확인.`);
-            console.warn('[IMG CHECK]', item.file, err);
-          });
-
-        // 3) onerror(실제 이미지 태그 로드 실패) 대비
-        img.addEventListener('error', () => {
-          img.style.outline = '2px solid #ef4444';
-          img.style.outlineOffset = '2px';
-          img.src = placeholder(item.file + ' 에러');
-          ensureHelperText(img, `${item.file} 파일을 불러오지 못했습니다.`);
-        }, { once:true });
-
-      });
-    })();
-  </script>
+  <footer class="border-t border-neutral-200 bg-white px-5 py-10 text-sm text-neutral-500">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 md:flex-row lg:px-8">
+      <p>© 이우주치과. All rights reserved.</p>
+      <p>상호명 · 대표자 · 사업자등록번호 · 주소 · 전화번호 입력</p>
+    </div>
+  </footer>
 </body>
 </html>
