@@ -8,6 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Noto Sans KR', system-ui, sans-serif; }
+    section[id] {
+      scroll-margin-top: 72px;
+    }
     .glass { background: rgba(255,255,255,0.78); backdrop-filter: blur(18px); }
     .brand-logo {
       background: rgba(255,255,255,0.95);
@@ -16,6 +19,13 @@
     }
     .site-nav {
       white-space: nowrap;
+    }
+    .light-section-header .site-nav,
+    .light-section-header .lang-switcher {
+      color: #111827;
+    }
+    .light-section-header .site-nav a {
+      text-shadow: 0 1px 10px rgba(255,255,255,0.72);
     }
     html[lang="en"] .site-nav {
       gap: 1.05rem;
@@ -176,7 +186,7 @@
 </head>
 <body class="bg-[#f7f5f1] text-[#171717] antialiased">
   <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/12 bg-[#081313]/72 backdrop-blur-xl">
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-50 border-b border-white/12 bg-[#081313]/72 backdrop-blur-xl">
     <div class="mx-auto hidden max-w-7xl justify-end px-5 pt-2 lg:flex lg:px-8">
       <div class="lang-switcher flex items-center gap-1 rounded-full border border-white/15 bg-white/10 p-1 text-[9px] font-semibold text-white backdrop-blur" aria-label="언어 선택">
         <button type="button" data-lang="en" aria-label="English" class="inline-flex items-center justify-center gap-1">US <span class="lang-flag"><img src="flag-us.jpg" alt="" /></span></button>
@@ -521,7 +531,7 @@
     <div class="mx-auto max-w-6xl rounded-[2.6rem] bg-neutral-950 px-6 py-16 text-center text-white md:px-12 md:py-24">
       <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl">치료를 미루고 있다면,<br />먼저 정확히 상담받아보세요.</h2>
       <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/68">
-        부담스럽게 권유하지 않습니다. 현재 상태와 가능한 선택지를 차분히 설명드리겠습니다.
+        현재 상태와 가능한 선택지를 차분히 설명드리겠습니다.
       </p>
       <a href="https://naver.me/GbDLIRZB" target="_blank" class="mt-10 inline-flex rounded-full bg-[#03C75A] px-9 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-[#02b350]">
         네이버 예약하기
@@ -625,7 +635,7 @@
         heroDesc: "Lee Woo Joo Dental Clinic focuses on orthodontics, aesthetic prosthetics, and implant treatment with honest explanations and long-lasting, stable results.",
         bookLong: "Book on Naver",
         viewCare: "View Treatments",
-        philosophyTitle: "No exaggeration<br />only the treatment you need",
+        philosophyTitle: "Precision treatment<br />for your best smile",
         generalTitle: "General care<br />with clear standards",
         specialtyTitle: "Signature care<br />at Lee Woo Joo Dental",
         doctorTitle: "Led by one director<br />from start to finish",
@@ -683,11 +693,11 @@
       },
       "정석 치료를 향한 진단, 환자의 상황에 맞는 최고의 진료를 지향합니다.": {
         en: "We pursue precise diagnosis and the best care tailored to each patient’s condition.",
-        zh: "我们以规范治疗为目标，提供符合患者情况的最佳诊疗。"
+        zh: "我们重视准确诊断，并根据患者情况提供合适的治疗。"
       },
       "치과 치료는 한 번의 선택이 오래 남습니다. 이우주치과는 환자가 이해할 수 있는 설명, 치료 전후의 명확한 기준, 장기적인 유지까지 고려한 진료를 중요하게 생각합니다.": {
-        en: "A dental decision can stay with you for a long time. We value clear explanations, defined standards before and after treatment, and care that considers long-term maintenance.",
-        zh: "牙科治疗的选择会影响很久。我们重视患者能理解的说明、治疗前后的明确标准，以及长期维护。"
+        en: "Dental treatment is something that stays with you for a long time. We value clear explanations, thoughtful treatment standards, and long-term maintenance after care.",
+        zh: "牙科治疗一次选择，会影响很久。我们重视患者能理解的说明、治疗前后的明确标准，以及长期维护。"
       },
       "진료 전 설명부터 치료 후 관리까지": {
         en: "From consultation to aftercare",
@@ -702,12 +712,12 @@
         zh: "准确诊断并说明"
       },
       "정직한 진단": {
-        en: "Honest Diagnosis",
-        zh: "诚实诊断"
+        en: "Accurate Diagnosis",
+        zh: "准确诊断"
       },
       "필요하지 않은 치료를 권하지 않고, 가능한 선택지를 충분히 설명합니다.": {
         en: "We do not recommend unnecessary treatment and explain the available options clearly.",
-        zh: "不建议不必要的治疗，并充分说明可选择的方案。"
+        zh: "不建议不必要的治疗，会把可选择的方案充分说明。"
       },
       "색과 형태의 조화": {
         en: "Harmony of color and shape",
@@ -730,12 +740,12 @@
         zh: "持久的治疗结果"
       },
       "당장의 변화보다 치료 후 안정성과 유지 관리까지 생각합니다.": {
-        en: "We think beyond immediate change to stability and maintenance after treatment.",
+        en: "We focus not only on immediate results, but also on long-term stability and maintenance.",
         zh: "比起短期变化，我们更重视治疗后的稳定性和维护。"
       },
       "치아 배열, 보철, 임플란트 상담까지 현재 상태를 정확히 보고 환자의 상황에 맞는 치료 방향을 차분히 안내합니다.": {
-        en: "From tooth alignment and prosthetics to implant consultations, we assess your current condition and guide you calmly toward the right treatment plan.",
-        zh: "从牙齿排列、修复到种植咨询，我们准确评估当前状态，并根据患者情况说明治疗方向。"
+        en: "From tooth alignment and prosthetics to implant consultations, we assess your current condition and recommend the right treatment plan for your needs.",
+        zh: "从牙齿排列、修复到种植咨询，我们会准确了解目前状态，并根据患者情况说明治疗方向。"
       },
       "균형 잡힌 배열": {
         en: "Balanced alignment",
@@ -775,7 +785,7 @@
       },
       "오로지 심미를 위한 치료는 시작부터 과정이 달라야 합니다. 교정, 라미네이트, 심미보철, 임플란트까지 기능과 안정성을 지키면서 얼굴과 미소에 자연스럽게 어울리는 결과를 한 명의 원장이 통합적으로 조율합니다.": {
         en: "Treatment for aesthetics alone must be planned differently from the start. From orthodontics, veneers, and aesthetic prosthetics to implants, one director coordinates the entire process while preserving function, stability, and a natural fit with the face and smile.",
-        zh: "以美学为目标的治疗，从一开始就应有不同的流程。从正畸、贴面、美学修复到种植，院长统一协调整个过程，在保持功能与稳定性的同时追求与脸型和笑容自然协调的结果。"
+        zh: "以美观为目标的治疗，从一开始过程就不同。从正畸、贴面、美学修复到种植，院长统一协调，在保持功能和稳定性的同时，追求与脸型和笑容自然协调的结果。"
       },
       "심미 목적 치료는 과정부터 다릅니다": {
         en: "Aesthetic treatment starts with a different process",
@@ -791,15 +801,15 @@
       },
       "교정, 라미네이트, 심미보철은 각각의 장단점이 다릅니다. 필요한 치료를 조합해 과하지 않은 자연스러운 변화를 목표로 합니다.": {
         en: "Orthodontics, veneers, and aesthetic prosthetics each have different strengths. We combine only what is needed for a natural change without excess.",
-        zh: "正畸、贴面和美学修复各有优缺点。我们组合必要治疗，追求不过度、自然的改变。"
+        zh: "正畸、贴面和美学修复各有优缺点。我们根据需要组合治疗，追求不过度、自然的改变。"
       },
       "1인 원장의 통합 조율": {
-        en: "Integrated coordination by one director",
+        en: "Coordinated by one doctor",
         zh: "一位院长统一协调"
       },
       "진단, 치료 순서, 보철 디자인, 유지 관리까지 한 명의 원장이 전체 흐름을 보고 조율해 치료 방향이 흔들리지 않도록 합니다.": {
-        en: "One director oversees diagnosis, treatment sequence, prosthetic design, and maintenance so the treatment direction stays consistent.",
-        zh: "从诊断、治疗顺序、修复设计到维护管理，由一位院长统筹把握，确保治疗方向稳定一致。"
+        en: "One doctor coordinates diagnosis, treatment sequencing, orthodontics, veneers, and prosthetic design for the best possible outcome.",
+        zh: "从诊断、治疗顺序、正畸、贴面到修复设计，由一位院长整体协调，尽量达到更好的治疗结果。"
       },
       "임플란트와 치주 문제 치료": {
         en: "Implant and periodontal problem care",
@@ -811,7 +821,7 @@
       },
       "오랜 기간 한 자리에서 쌓은 진료 경험을 바탕으로, 환자에게 꼭 맞는 치료 방향을 제안합니다.": {
         en: "Based on years of experiences, we suggest treatment directions that fit each patient.",
-        zh: "基于长期在同一地区积累的诊疗经验，为患者提出合适的治疗方向。"
+        zh: "根据长期积累的诊疗经验，为患者提出合适的治疗方向。"
       },
       "이우주 원장": {
         en: "Director Lee Woo Joo",
@@ -835,7 +845,7 @@
       },
       "(전) 연세제이교정치과 심미보철, 임플란트 담당의": {
         en: "Former Yonsei J Orthodontic Dental Clinic, aesthetic prosthetics and implant doctor",
-        zh: "前延世J正畸牙科 美学修复与种植担当医"
+        zh: "前延世J正畸牙科 美学修复与种植负责医生"
       },
       "대한심미치과학회 · 대한구강악안면임플란트학회 회원": {
         en: "Member of the Korean Academy of Esthetic Dentistry and Korean Academy of Oral & Maxillofacial Implantology",
@@ -847,7 +857,7 @@
       },
       "네이버 플레이스 리뷰에서 자주 보이는 말은 친절한 설명, 편안한 진료, 꼼꼼한 치료, 그리고 자세한 교정 상담이었습니다.": {
         en: "The words that appear often in Naver Place reviews are kind explanations, comfortable care, careful treatment, and detailed orthodontic consultations.",
-        zh: "Naver Place评价中经常出现的关键词是亲切说明、舒适诊疗、细致治疗以及详细的正畸咨询。"
+        zh: "Naver Place评价中经常提到的是亲切说明、舒适治疗、细致治疗，以及详细的正畸咨询。"
       },
       "방문자 리뷰": {
         en: "visitor reviews",
@@ -921,9 +931,9 @@
         en: "If you have been delaying treatment,<br />start with a precise consultation",
         zh: "如果一直推迟治疗，<br />请先接受准确咨询"
       },
-      "부담스럽게 권유하지 않습니다. 현재 상태와 가능한 선택지를 차분히 설명드리겠습니다.": {
-        en: "We do not pressure you. We calmly explain your current condition and possible options.",
-        zh: "我们不会让您感到负担。会平静说明当前状态和可选择方案。"
+      "현재 상태와 가능한 선택지를 차분히 설명드리겠습니다.": {
+        en: "We provide clear guidance on your condition and treatment options, so you can make an informed decision.",
+        zh: "会把现在的情况和可选择的治疗方案说明清楚。"
       },
       "치료를 미루고 있다면,": {
         en: "If you have been delaying treatment,",
@@ -975,7 +985,7 @@
       },
       "수요일은 학회 일정으로 주로 휴무입니다. 수요일 진료 시 예약이 필요합니다.": {
         en: "Wednesdays are usually closed due to academic schedules. Appointment required for Wednesday visits.",
-        zh: "周三通常因学会日程休诊。如需周三就诊，必须预约。"
+        zh: "周三因学会日程多数休诊。如需周三就诊，必须提前预约。"
       },
       "일요일과 공휴일은 휴무입니다.": {
         en: "Closed on Sundays and public holidays.",
@@ -1025,6 +1035,22 @@
     document.querySelectorAll("[data-lang]").forEach((button) => {
       button.addEventListener("click", () => setLanguage(button.dataset.lang));
     });
+
+    const siteHeader = document.getElementById("site-header");
+    const lightHeaderSections = ["philosophy", "review", "location"]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    function updateHeaderTextTone() {
+      if (!siteHeader) return;
+      const isLightSection = lightHeaderSections.some((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= 120 && rect.bottom > 120;
+      });
+      siteHeader.classList.toggle("light-section-header", isLightSection);
+    }
+    window.addEventListener("scroll", updateHeaderTextTone, { passive: true });
+    window.addEventListener("hashchange", updateHeaderTextTone);
+    updateHeaderTextTone();
 
     setLanguage(localStorage.getItem("leewoo-language") || "ko");
   </script>
