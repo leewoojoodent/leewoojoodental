@@ -12,6 +12,53 @@
     .brand-logo {
       background: rgba(255,255,255,0.95);
       box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+      flex: 0 0 auto;
+    }
+    .site-nav {
+      white-space: nowrap;
+    }
+    html[lang="en"] .site-nav {
+      gap: 1.05rem;
+      font-size: 17px;
+    }
+    html[lang="zh-CN"] .site-nav {
+      gap: 1.35rem;
+      font-size: 20px;
+    }
+    .lang-switcher button {
+      height: 2rem;
+      min-width: 3.6rem;
+      padding: 0 0.42rem;
+      border-radius: 9999px;
+      transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+    }
+    .lang-flag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 1.48rem;
+      width: 1.48rem;
+      border-radius: 9999px;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.92), 0 2px 8px rgba(0,0,0,0.18);
+      font-size: 0.72rem;
+      line-height: 1;
+    }
+    .lang-flag img {
+      height: 100%;
+      width: 100%;
+      border-radius: 9999px;
+      object-fit: cover;
+      display: block;
+    }
+    .lang-switcher button:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.2);
+    }
+    .lang-switcher button.is-active {
+      background: rgba(255,255,255,0.24);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.42);
     }
     .hero-bg {
       background:
@@ -130,21 +177,30 @@
 <body class="bg-[#f7f5f1] text-[#171717] antialiased">
   <!-- Header -->
   <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/12 bg-[#081313]/72 backdrop-blur-xl">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 lg:px-8">
+    <div class="mx-auto hidden max-w-7xl justify-end px-5 pt-2 lg:flex lg:px-8">
+      <div class="lang-switcher flex items-center gap-1 rounded-full border border-white/15 bg-white/10 p-1 text-[9px] font-semibold text-white backdrop-blur" aria-label="언어 선택">
+        <button type="button" data-lang="en" aria-label="English" class="inline-flex items-center justify-center gap-1">US <span class="lang-flag"><img src="flag-us.jpg" alt="" /></span></button>
+        <button type="button" data-lang="zh" aria-label="中文" class="inline-flex items-center justify-center gap-1">CN <span class="lang-flag"><img src="flag-cn.jpg" alt="" /></span></button>
+        <button type="button" data-lang="ko" aria-label="한국어" class="is-active inline-flex items-center justify-center gap-1">KR <span class="lang-flag"><img src="flag-kr.jpg" alt="" /></span></button>
+      </div>
+    </div>
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-2.5 lg:px-8">
       <a href="#home" class="brand-logo flex items-center rounded-full px-4 py-2.5 ring-1 ring-white/30" aria-label="이우주치과 홈">
         <img src="logo.png" alt="이우주치과 로고" class="h-[58px] w-auto md:h-[67px]" />
       </a>
-      <nav class="hidden items-center gap-7 text-[23px] font-semibold text-white md:flex">
-        <a href="#philosophy" class="drop-shadow-sm transition hover:text-[#d7c9ad]">진료철학</a>
-        <a href="#general-care" class="drop-shadow-sm transition hover:text-[#d7c9ad]">일반진료</a>
-        <a href="#signature-care" class="drop-shadow-sm transition hover:text-[#d7c9ad]">전문진료</a>
-        <a href="#doctor" class="drop-shadow-sm transition hover:text-[#d7c9ad]">의료진</a>
-        <a href="#review" class="drop-shadow-sm transition hover:text-[#d7c9ad]">리뷰</a>
-        <a href="#location" class="drop-shadow-sm transition hover:text-[#d7c9ad]">오시는 길</a>
+      <nav class="site-nav hidden items-center gap-7 text-[23px] font-semibold text-white md:flex">
+        <a href="#philosophy" class="drop-shadow-sm transition hover:text-[#d7c9ad]" data-i18n="navPhilosophy">진료철학</a>
+        <a href="#general-care" class="drop-shadow-sm transition hover:text-[#d7c9ad]" data-i18n="navGeneral">일반진료</a>
+        <a href="#signature-care" class="drop-shadow-sm transition hover:text-[#d7c9ad]" data-i18n="navSpecialty">전문진료</a>
+        <a href="#doctor" class="drop-shadow-sm transition hover:text-[#d7c9ad]" data-i18n="navDoctor">의료진</a>
+        <a href="#review" class="drop-shadow-sm transition hover:text-[#d7c9ad]" data-i18n="navReview">리뷰</a>
+        <a href="#location" class="drop-shadow-sm transition hover:text-[#d7c9ad]" data-i18n="navLocation">오시는 길</a>
       </nav>
-      <a href="https://naver.me/GbDLIRZB" target="_blank" class="rounded-full bg-[#03C75A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#02b350]">
-        네이버 예약
-      </a>
+      <div class="flex items-center gap-2">
+        <a href="https://naver.me/GbDLIRZB" target="_blank" class="rounded-full bg-[#03C75A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#02b350]" data-i18n="bookShort">
+          네이버 예약
+        </a>
+      </div>
     </div>
   </header>
 
@@ -152,20 +208,20 @@
   <section id="home" class="hero-bg flex min-h-screen items-center pt-24 text-white">
     <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 lg:grid-cols-[1.05fr_.95fr] lg:px-8">
       <div>
-        <p class="fade-up mb-5 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur">
+        <p class="fade-up mb-5 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur" data-i18n="heroBadge">
           12년 이상, 진료로 쌓아온 신뢰
         </p>
-        <h1 class="fade-up-delay max-w-4xl text-5xl font-semibold leading-[1.08] tracking-[-0.06em] md:text-7xl">
-          오래 다닐 수 있는 치과는<br />결국, 진료가 말합니다.
+        <h1 class="fade-up-delay max-w-4xl text-5xl font-semibold leading-[1.08] tracking-[-0.06em] md:text-7xl" data-i18n="heroTitle">
+          오래 다닐 수 있는 치과<br />결국, 진료가 말합니다
         </h1>
-        <p class="fade-up-delay2 mt-7 max-w-2xl text-lg leading-8 text-white/82 md:text-xl">
+        <p class="fade-up-delay2 mt-7 max-w-2xl text-lg leading-8 text-white/82 md:text-xl" data-i18n="heroDesc">
           이우주치과는 교정, 심미보철, 임플란트 진료를 중심으로 환자에게 필요한 치료를 정직하게 설명하고, 오래 안정적으로 유지되는 결과를 목표로 합니다.
         </p>
         <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href="https://naver.me/GbDLIRZB" target="_blank" class="inline-flex items-center justify-center rounded-full bg-[#03C75A] px-8 py-4 text-base font-semibold text-white shadow-xl shadow-black/20 transition hover:bg-[#02b350]">
+          <a href="https://naver.me/GbDLIRZB" target="_blank" class="inline-flex items-center justify-center rounded-full bg-[#03C75A] px-8 py-4 text-base font-semibold text-white shadow-xl shadow-black/20 transition hover:bg-[#02b350]" data-i18n="bookLong">
             네이버 예약하기
           </a>
-          <a href="#general-care" class="inline-flex items-center justify-center rounded-full border border-white/35 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur transition hover:bg-white/18">
+          <a href="#general-care" class="inline-flex items-center justify-center rounded-full border border-white/35 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur transition hover:bg-white/18" data-i18n="viewCare">
             진료 분야 보기
           </a>
         </div>
@@ -205,7 +261,7 @@
       <div class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
         <div class="max-w-3xl">
           <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-[#087b84]">OUR STANDARD</p>
-          <h2 class="text-4xl font-semibold tracking-[-0.055em] text-neutral-950 md:text-6xl">과장하지 않고,<br />필요한 치료를 정확하게.</h2>
+          <h2 class="text-4xl font-semibold tracking-[-0.055em] text-neutral-950 md:text-6xl" data-i18n="philosophyTitle">과장하지 않고,<br />필요한 치료를 정확하게</h2>
           <p class="mt-7 text-lg leading-8 text-neutral-600">
             치과 치료는 한 번의 선택이 오래 남습니다. 이우주치과는 환자가 이해할 수 있는 설명, 치료 전후의 명확한 기준, 장기적인 유지까지 고려한 진료를 중요하게 생각합니다.
           </p>
@@ -262,7 +318,7 @@
       <div class="mb-16 flex flex-col justify-between gap-8 md:flex-row md:items-end">
         <div>
           <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-neutral-400">GENERAL CARE</p>
-          <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl">기본 진료도<br />기준 있게 봅니다.</h2>
+          <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl" data-i18n="generalTitle">기본 진료도<br />기준 있게 봅니다</h2>
         </div>
         <p class="max-w-xl text-lg leading-8 text-neutral-600">
           치아 배열, 보철, 임플란트 상담까지 현재 상태를 정확히 보고 환자의 상황에 맞는 치료 방향을 차분히 안내합니다.
@@ -319,7 +375,7 @@
       <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
         <div>
           <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-[#d7c9ad]">SIGNATURE CARE</p>
-          <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl">이우주치과의<br />전문진료.</h2>
+          <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl" data-i18n="specialtyTitle">이우주치과의<br />전문진료</h2>
         </div>
         <p class="text-lg leading-8 text-white/72">
           오로지 심미를 위한 치료는 시작부터 과정이 달라야 합니다. 교정, 라미네이트, 심미보철, 임플란트까지 기능과 안정성을 지키면서 얼굴과 미소에 자연스럽게 어울리는 결과를 한 명의 원장이 통합적으로 조율합니다.
@@ -356,7 +412,7 @@
     <div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
       <div>
         <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-white/40">DOCTOR</p>
-        <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl">대표원장이<br />처음부터 끝까지.</h2>
+        <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl" data-i18n="doctorTitle">대표원장이<br />처음부터 끝까지</h2>
         <p class="mt-7 text-lg leading-8 text-white/68">
           오랜 기간 한 자리에서 쌓은 진료 경험을 바탕으로, 환자에게 꼭 맞는 치료 방향을 제안합니다.
         </p>
@@ -518,11 +574,16 @@
         </div>
       </div>
       <div class="overflow-hidden rounded-[2rem] bg-[#f7f5f1] p-6 shadow-sm ring-1 ring-black/5">
-        <a href="https://naver.me/xAfAGTVO" target="_blank" class="flex h-full min-h-[520px] flex-col items-center justify-center rounded-[1.5rem] bg-white text-center text-neutral-600 transition hover:bg-neutral-50">
-          <span class="rounded-full bg-[#03C75A] px-5 py-2 text-sm font-semibold text-white">NAVER MAP</span>
-          <span class="mt-6 text-3xl font-semibold tracking-[-0.05em] text-neutral-950">네이버 지도에서 보기</span>
-          <span class="mt-4 leading-7">서울 영등포구 시흥대로 675<br />삼성 YJ 그랜드빌딩 301호</span>
-          <span class="mt-8 rounded-full border border-neutral-200 px-6 py-3 text-sm font-semibold text-neutral-800">지도 열기</span>
+        <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-sm ring-1 ring-black/5">
+          <iframe
+            src="https://naver.me/xAfAGTVO"
+            title="이우주치과 네이버 지도"
+            class="h-[520px] w-full border-0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <a href="https://naver.me/xAfAGTVO" target="_blank" class="mt-4 flex items-center justify-center rounded-full bg-[#03C75A] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#02b350]">
+          네이버 지도 크게 보기
         </a>
       </div>
     </div>
@@ -534,5 +595,436 @@
       <p>서울 영등포구 시흥대로 675 삼성 YJ 그랜드빌딩 301호 · 02-848-2875</p>
     </div>
   </footer>
+  <script>
+    const translations = {
+      ko: {
+        navPhilosophy: "진료철학",
+        navGeneral: "일반진료",
+        navSpecialty: "전문진료",
+        navDoctor: "의료진",
+        navReview: "리뷰",
+        navLocation: "오시는 길",
+        bookShort: "네이버 예약",
+        heroBadge: "12년 이상, 진료로 쌓아온 신뢰",
+        heroTitle: "오래 다닐 수 있는 치과<br />결국, 진료가 말합니다",
+        heroDesc: "이우주치과는 교정, 심미보철, 임플란트 진료를 중심으로 환자에게 필요한 치료를 정직하게 설명하고, 오래 안정적으로 유지되는 결과를 목표로 합니다.",
+        bookLong: "네이버 예약하기",
+        viewCare: "진료 분야 보기",
+        philosophyTitle: "과장하지 않고,<br />필요한 치료를 정확하게",
+        generalTitle: "기본 진료도<br />기준 있게 봅니다",
+        specialtyTitle: "이우주치과의<br />전문진료",
+        doctorTitle: "대표원장이<br />처음부터 끝까지"
+      },
+      en: {
+        navPhilosophy: "Philosophy",
+        navGeneral: "General Care",
+        navSpecialty: "Signature Care",
+        navDoctor: "Doctor",
+        navReview: "Reviews",
+        navLocation: "Location",
+        bookShort: "Book on Naver",
+        heroBadge: "Trusted through 12+ years of care",
+        heroTitle: "A dental clinic you can keep coming back to<br />because treatment speaks for itself",
+        heroDesc: "Lee Woo Joo Dental Clinic focuses on orthodontics, aesthetic prosthetics, and implant treatment with honest explanations and long-lasting, stable results.",
+        bookLong: "Book on Naver",
+        viewCare: "View Treatments",
+        philosophyTitle: "No exaggeration<br />only the treatment you need",
+        generalTitle: "General care<br />with clear standards",
+        specialtyTitle: "Signature care<br />at Lee Woo Joo Dental",
+        doctorTitle: "Led by one director<br />from start to finish"
+      },
+      zh: {
+        navPhilosophy: "诊疗理念",
+        navGeneral: "基础诊疗",
+        navSpecialty: "特色诊疗",
+        navDoctor: "医生介绍",
+        navReview: "评价",
+        navLocation: "来院路线",
+        bookShort: "Naver预约",
+        heroBadge: "12年以上，以诊疗累积信任",
+        heroTitle: "值得长期信赖的牙科<br />最终由诊疗来说话",
+        heroDesc: "Lee Woo Joo牙科以正畸、美学修复、种植治疗为中心，诚实说明患者所需治疗，并追求长期稳定的治疗结果。",
+        bookLong: "Naver预约",
+        viewCare: "查看诊疗项目",
+        philosophyTitle: "不夸大<br />准确提供所需治疗",
+        generalTitle: "基础诊疗<br />也有清晰标准",
+        specialtyTitle: "Lee Woo Joo牙科的<br />特色诊疗",
+        doctorTitle: "院长亲自负责<br />从开始到结束"
+      }
+    };
+
+    const textTranslations = {
+      "지역에서 꾸준히 운영해온 진료 경험": {
+        en: "Clinical experience built steadily in the community",
+        zh: "在本地区长期积累的诊疗经验"
+      },
+      "심미 보철, 교정에서 최고 만족도로 소문난 병원": {
+        en: "Known for high satisfaction in aesthetic prosthetics and orthodontics",
+        zh: "以美学修复和正畸高满意度而受到认可"
+      },
+      "주요 진료": {
+        en: "Main Treatments",
+        zh: "主要诊疗"
+      },
+      "교정치료": {
+        en: "Orthodontics",
+        zh: "正畸治疗"
+      },
+      "심미보철": {
+        en: "Aesthetic Prosthetics",
+        zh: "美学修复"
+      },
+      "임플란트": {
+        en: "Implants",
+        zh: "种植牙"
+      },
+      "라미네이트": {
+        en: "Veneers",
+        zh: "贴面"
+      },
+      "정석 치료를 향한 진단, 환자의 상황에 맞는 최고의 진료를 지향합니다.": {
+        en: "We pursue precise diagnosis and the best care tailored to each patient’s condition.",
+        zh: "我们以规范治疗为目标，提供符合患者情况的最佳诊疗。"
+      },
+      "치과 치료는 한 번의 선택이 오래 남습니다. 이우주치과는 환자가 이해할 수 있는 설명, 치료 전후의 명확한 기준, 장기적인 유지까지 고려한 진료를 중요하게 생각합니다.": {
+        en: "A dental decision can stay with you for a long time. We value clear explanations, defined standards before and after treatment, and care that considers long-term maintenance.",
+        zh: "牙科治疗的选择会影响很久。我们重视患者能理解的说明、治疗前后的明确标准，以及长期维护。"
+      },
+      "진료 전 설명부터 치료 후 관리까지": {
+        en: "From consultation to aftercare",
+        zh: "从治疗前说明到治疗后管理"
+      },
+      "기준이 분명한 치과진료": {
+        en: "Dental care with clear standards",
+        zh: "标准明确的牙科诊疗"
+      },
+      "정확히 보고 설명": {
+        en: "Clear diagnosis and explanation",
+        zh: "准确诊断并说明"
+      },
+      "정직한 진단": {
+        en: "Honest Diagnosis",
+        zh: "诚实诊断"
+      },
+      "필요하지 않은 치료를 권하지 않고, 가능한 선택지를 충분히 설명합니다.": {
+        en: "We do not recommend unnecessary treatment and explain the available options clearly.",
+        zh: "不建议不必要的治疗，并充分说明可选择的方案。"
+      },
+      "색과 형태의 조화": {
+        en: "Harmony of color and shape",
+        zh: "颜色与形态的协调"
+      },
+      "섬세한 심미 기준": {
+        en: "Refined Aesthetic Standards",
+        zh: "细致的美学标准"
+      },
+      "치아만 보는 것이 아니라 얼굴형, 웃는 선, 잇몸 라인까지 함께 고려합니다.": {
+        en: "We consider not only the teeth, but also facial shape, smile line, and gum line.",
+        zh: "不仅看牙齿，也会综合考虑脸型、微笑线和牙龈线。"
+      },
+      "정밀함이 만드는 안정성": {
+        en: "Stability through precision",
+        zh: "精密带来的稳定性"
+      },
+      "오래 가는 결과": {
+        en: "Long-Lasting Results",
+        zh: "持久的治疗结果"
+      },
+      "당장의 변화보다 치료 후 안정성과 유지 관리까지 생각합니다.": {
+        en: "We think beyond immediate change to stability and maintenance after treatment.",
+        zh: "比起短期变化，我们更重视治疗后的稳定性和维护。"
+      },
+      "치아 배열, 보철, 임플란트 상담까지 현재 상태를 정확히 보고 환자의 상황에 맞는 치료 방향을 차분히 안내합니다.": {
+        en: "From tooth alignment and prosthetics to implant consultations, we assess your current condition and guide you calmly toward the right treatment plan.",
+        zh: "从牙齿排列、修复到种植咨询，我们准确评估当前状态，并根据患者情况说明治疗方向。"
+      },
+      "균형 잡힌 배열": {
+        en: "Balanced alignment",
+        zh: "均衡排列"
+      },
+      "배열만 맞추는 교정이 아니라, 교합과 얼굴 조화까지 고려한 교정 계획을 세웁니다.": {
+        en: "Our orthodontic plans consider bite and facial harmony, not just straight teeth.",
+        zh: "正畸计划不仅关注排列，也考虑咬合与面部协调。"
+      },
+      "자연스러운 심미성": {
+        en: "Natural aesthetics",
+        zh: "自然美感"
+      },
+      "자연스러운 색감, 형태, 잇몸 라인을 고려해 티 나지 않는 아름다움을 추구합니다.": {
+        en: "We pursue natural beauty by considering color, shape, and gum line.",
+        zh: "通过考虑色泽、形态和牙龈线，追求自然、不突兀的美感。"
+      },
+      "정밀한 식립 계획": {
+        en: "Precise implant planning",
+        zh: "精密种植计划"
+      },
+      "정확한 진단과 보철 중심 계획으로 씹는 힘과 유지 안정성을 함께 고려합니다.": {
+        en: "With accurate diagnosis and prosthetic-driven planning, we consider chewing strength and long-term stability.",
+        zh: "通过准确诊断和以修复为中心的计划，同时考虑咀嚼力与长期稳定。"
+      },
+      "턱의 균형과 기능": {
+        en: "Jaw balance and function",
+        zh: "颌关节平衡与功能"
+      },
+      "턱관절": {
+        en: "TMJ Care",
+        zh: "颞下颌关节"
+      },
+      "턱의 통증, 소리, 불편감을 살피고 생활 습관과 교합까지 함께 고려합니다.": {
+        en: "We evaluate jaw pain, clicking, and discomfort while considering habits and bite.",
+        zh: "评估下颌疼痛、弹响和不适，并结合生活习惯与咬合情况。"
+      },
+      "오로지 심미를 위한 치료는 시작부터 과정이 달라야 합니다. 교정, 라미네이트, 심미보철, 임플란트까지 기능과 안정성을 지키면서 얼굴과 미소에 자연스럽게 어울리는 결과를 한 명의 원장이 통합적으로 조율합니다.": {
+        en: "Treatment for aesthetics alone must be planned differently from the start. From orthodontics, veneers, and aesthetic prosthetics to implants, one director coordinates the entire process while preserving function, stability, and a natural fit with the face and smile.",
+        zh: "以美学为目标的治疗，从一开始就应有不同的流程。从正畸、贴面、美学修复到种植，院长统一协调整个过程，在保持功能与稳定性的同时追求与脸型和笑容自然协调的结果。"
+      },
+      "심미 목적 치료는 과정부터 다릅니다": {
+        en: "Aesthetic treatment starts with a different process",
+        zh: "美学治疗从流程开始就不同"
+      },
+      "단순히 하얗게, 가지런하게 만드는 치료가 아니라 치아 비율, 입술선, 잇몸 라인, 얼굴 조화까지 먼저 설계합니다.": {
+        en: "It is not simply about making teeth whiter or straighter. We first design tooth proportion, lip line, gum line, and facial harmony.",
+        zh: "并非只是让牙齿变白、变整齐，而是先设计牙齿比例、唇线、牙龈线和面部协调。"
+      },
+      "교정부터 라미네이트, 보철까지": {
+        en: "From orthodontics to veneers and prosthetics",
+        zh: "从正畸到贴面、修复"
+      },
+      "교정, 라미네이트, 심미보철은 각각의 장단점이 다릅니다. 필요한 치료를 조합해 과하지 않은 자연스러운 변화를 목표로 합니다.": {
+        en: "Orthodontics, veneers, and aesthetic prosthetics each have different strengths. We combine only what is needed for a natural change without excess.",
+        zh: "正畸、贴面和美学修复各有优缺点。我们组合必要治疗，追求不过度、自然的改变。"
+      },
+      "1인 원장의 통합 조율": {
+        en: "Integrated coordination by one director",
+        zh: "一位院长统一协调"
+      },
+      "진단, 치료 순서, 보철 디자인, 유지 관리까지 한 명의 원장이 전체 흐름을 보고 조율해 치료 방향이 흔들리지 않도록 합니다.": {
+        en: "One director oversees diagnosis, treatment sequence, prosthetic design, and maintenance so the treatment direction stays consistent.",
+        zh: "从诊断、治疗顺序、修复设计到维护管理，由一位院长统筹把握，确保治疗方向稳定一致。"
+      },
+      "임플란트와 치주 문제 치료": {
+        en: "Implant and periodontal problem care",
+        zh: "种植与牙周问题治疗"
+      },
+      "임플란트 주변 염증, 잇몸뼈 상태, 치주질환으로 인한 불편감까지 함께 살피며 심미성과 기능 회복을 같이 고려합니다.": {
+        en: "We evaluate peri-implant inflammation, bone condition, and periodontal discomfort while considering both aesthetics and function.",
+        zh: "同时关注种植体周围炎症、牙槽骨状态和牙周病带来的不适，并兼顾美观与功能恢复。"
+      },
+      "오랜 기간 한 자리에서 쌓은 진료 경험을 바탕으로, 환자에게 꼭 맞는 치료 방향을 제안합니다.": {
+        en: "Based on years of experience in one place, we suggest treatment directions that fit each patient.",
+        zh: "基于长期在同一地区积累的诊疗经验，为患者提出合适的治疗方向。"
+      },
+      "이우주 원장": {
+        en: "Director Lee Woo Joo",
+        zh: "李宇宙院长"
+      },
+      "통합치과전문의": {
+        en: "Board-Certified Integrated Dental Specialist",
+        zh: "综合牙科专科医生"
+      },
+      "경북대학교 치과대학 졸업": {
+        en: "Graduated from Kyungpook National University School of Dentistry",
+        zh: "毕业于庆北大学牙科大学"
+      },
+      "Columbia University 보철 · 임플란트 과정 수료": {
+        en: "Completed Columbia University prosthetics and implant course",
+        zh: "完成 Columbia University 修复与种植课程"
+      },
+      "(전) NY Columbia Dental Clinic, Aesthetic dentistry chief (Orthodontic and anterior tooth esthetics)": {
+        en: "Former NY Columbia Dental Clinic, Aesthetic Dentistry Chief (Orthodontic and anterior tooth esthetics)",
+        zh: "前 NY Columbia Dental Clinic 美学牙科负责人（正畸与前牙美学）"
+      },
+      "(전) 연세제이교정치과 심미보철, 임플란트 담당의": {
+        en: "Former Yonsei J Orthodontic Dental Clinic, aesthetic prosthetics and implant doctor",
+        zh: "前延世J正畸牙科 美学修复与种植担当医"
+      },
+      "대한심미치과학회 · 대한구강악안면임플란트학회 회원": {
+        en: "Member of the Korean Academy of Esthetic Dentistry and Korean Academy of Oral & Maxillofacial Implantology",
+        zh: "大韩美学牙科学会 · 大韩口腔颌面种植学会会员"
+      },
+      "환자들이 남겨준<br />진짜 진료 경험.": {
+        en: "Real treatment experiences<br />shared by patients",
+        zh: "患者留下的<br />真实诊疗体验"
+      },
+      "네이버 플레이스 리뷰에서 자주 보이는 말은 친절한 설명, 편안한 진료, 꼼꼼한 치료, 그리고 자세한 교정 상담이었습니다.": {
+        en: "The words that appear often in Naver Place reviews are kind explanations, comfortable care, careful treatment, and detailed orthodontic consultations.",
+        zh: "Naver Place评价中经常出现的关键词是亲切说明、舒适诊疗、细致治疗以及详细的正畸咨询。"
+      },
+      "방문자 리뷰": {
+        en: "visitor reviews",
+        zh: "访客评价"
+      },
+      "네이버 리뷰 보기": {
+        en: "View Naver Reviews",
+        zh: "查看Naver评价"
+      },
+      "네이버 리뷰": {
+        en: "Naver Review",
+        zh: "Naver评价"
+      },
+      "환자들이 남겨준": {
+        en: "Real treatment experiences",
+        zh: "患者留下的"
+      },
+      "진짜 진료 경험.": {
+        en: "shared by patients",
+        zh: "真实诊疗体验"
+      },
+      "“치과 공포가 있었는데, 설명을 자세히 해주셔서 편안하게 진료받았어요.”": {
+        en: "“I was afraid of dental treatment, but the detailed explanation helped me feel comfortable.”",
+        zh: "“我原本害怕看牙，但详细的说明让我安心接受了治疗。”"
+      },
+      "친절한 설명 · 편안한 진료": {
+        en: "Kind explanations · Comfortable care",
+        zh: "亲切说明 · 舒适诊疗"
+      },
+      "“교정 상담을 자세하게 해주시고, 치료 방향을 이해하기 쉽게 설명해주셨어요.”": {
+        en: "“The orthodontic consultation was detailed, and the treatment direction was easy to understand.”",
+        zh: "“正畸咨询很详细，治疗方向也说明得很容易理解。”"
+      },
+      "교정 상담 · 자세한 설명": {
+        en: "Orthodontic consultation · Detailed explanation",
+        zh: "正畸咨询 · 详细说明"
+      },
+      "“멀리 있어도 생각나서 다시 오게 되는 곳이에요. 주변에 추천하고 싶습니다.”": {
+        en: "“Even from far away, this is the place I think of and return to. I would recommend it.”",
+        zh: "“即使距离远，也会想起并再次来这里。想推荐给身边的人。”"
+      },
+      "재방문 · 추천": {
+        en: "Return visits · Recommendation",
+        zh: "复诊 · 推荐"
+      },
+      "“교정 중에도 불편한 부분을 세심하게 봐주시고, 필요한 설명을 잘 해주셔서 안심됐어요.”": {
+        en: "“During orthodontic treatment, they carefully checked discomfort and explained what I needed to know.”",
+        zh: "“正畸过程中也细心查看不适之处，并充分说明，让我很安心。”"
+      },
+      "교정 관리 · 세심함": {
+        en: "Orthodontic care · Attentiveness",
+        zh: "正畸管理 · 细心"
+      },
+      "“여러 곳에서 교정 상담을 받아봤는데, 가장 진심 있게 봐주신다는 느낌을 받았습니다.”": {
+        en: "“I had orthodontic consultations at several places, and this felt the most sincere.”",
+        zh: "“我在几家做过正畸咨询，这里让我感觉最真诚。”"
+      },
+      "교정 비교 상담 · 신뢰": {
+        en: "Orthodontic comparison consultation · Trust",
+        zh: "正畸比较咨询 · 信任"
+      },
+      "교정 상담이 자세해요 · 설명을 잘해줘요 · 꼼꼼해요 · 편안해요 · 추천해요": {
+        en: "Detailed orthodontic consultation · Clear explanations · Careful · Comfortable · Recommended",
+        zh: "正畸咨询详细 · 说明清楚 · 细致 · 舒适 · 推荐"
+      },
+      "네이버 방문자 리뷰에서 반복되는 긍정 키워드": {
+        en: "Positive keywords repeated in Naver visitor reviews",
+        zh: "Naver访客评价中反复出现的正面关键词"
+      },
+      "치료를 미루고 있다면,<br />먼저 정확히 상담받아보세요.": {
+        en: "If you have been delaying treatment,<br />start with a precise consultation",
+        zh: "如果一直推迟治疗，<br />请先接受准确咨询"
+      },
+      "부담스럽게 권유하지 않습니다. 현재 상태와 가능한 선택지를 차분히 설명드리겠습니다.": {
+        en: "We do not pressure you. We calmly explain your current condition and possible options.",
+        zh: "我们不会让您感到负担。会平静说明当前状态和可选择方案。"
+      },
+      "치료를 미루고 있다면,": {
+        en: "If you have been delaying treatment,",
+        zh: "如果一直推迟治疗，"
+      },
+      "먼저 정확히 상담받아보세요.": {
+        en: "start with a precise consultation",
+        zh: "请先接受准确咨询"
+      },
+      "네이버 예약하기": {
+        en: "Book on Naver",
+        zh: "Naver预约"
+      },
+      "오시는 길": {
+        en: "Location",
+        zh: "来院路线"
+      },
+      "서울 영등포구 시흥대로 675 삼성 YJ 그랜드빌딩 301호": {
+        en: "301, Samsung YJ Grand Building, 675 Siheung-daero, Yeongdeungpo-gu, Seoul",
+        zh: "首尔永登浦区始兴大路675 三星YJ Grand Building 301号"
+      },
+      "지번 대림동 952-19": {
+        en: "Lot address: Daerim-dong 952-19",
+        zh: "地番地址：大林洞952-19"
+      },
+      "월, 화, 목, 금": {
+        en: "Mon, Tue, Thu, Fri",
+        zh: "周一、周二、周四、周五"
+      },
+      "토요일": {
+        en: "Saturday",
+        zh: "周六"
+      },
+      "(점심시간 없음)": {
+        en: "(No lunch break)",
+        zh: "（无午休）"
+      },
+      "점심시간": {
+        en: "Lunch Break",
+        zh: "午休时间"
+      },
+      "야간진료": {
+        en: "Evening Care",
+        zh: "夜间诊疗"
+      },
+      "화요일 19:00-20:30": {
+        en: "Tuesday 19:00-20:30",
+        zh: "周二 19:00-20:30"
+      },
+      "수요일은 학회 일정으로 주로 휴무입니다. 수요일 진료 시 예약이 필요합니다.": {
+        en: "Wednesdays are usually closed due to academic schedules. Appointment required for Wednesday visits.",
+        zh: "周三通常因学会日程休诊。如需周三就诊，必须预约。"
+      },
+      "일요일과 공휴일은 휴무입니다.": {
+        en: "Closed on Sundays and public holidays.",
+        zh: "周日及公休日休诊。"
+      },
+      "네이버 지도 크게 보기": {
+        en: "Open Naver Map",
+        zh: "打开Naver地图"
+      }
+    };
+
+    function setLanguage(lang) {
+      const copy = translations[lang] || translations.ko;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (copy[key]) element.innerHTML = copy[key];
+      });
+      document.querySelectorAll("body *").forEach((element) => {
+        if (element.closest("[data-i18n]")) return;
+        [...element.childNodes].forEach((node) => {
+          if (node.nodeType !== Node.TEXT_NODE) return;
+          if (!node.koText) node.koText = node.nodeValue;
+          const original = node.koText;
+          const trimmed = original.trim();
+          if (!trimmed || !textTranslations[trimmed]) {
+            node.nodeValue = original;
+            return;
+          }
+          const translated = lang === "ko" ? trimmed : textTranslations[trimmed][lang];
+          if (!translated) {
+            node.nodeValue = original;
+            return;
+          }
+          node.nodeValue = original.replace(trimmed, translated);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.lang === lang);
+      });
+      localStorage.setItem("leewoo-language", lang);
+    }
+
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage(localStorage.getItem("leewoo-language") || "ko");
+  </script>
 </body>
 </html>
