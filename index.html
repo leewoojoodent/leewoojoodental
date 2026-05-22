@@ -327,7 +327,7 @@
       <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
           <div class="specialty-image-wrap relative h-52 overflow-hidden bg-white">
-            <img src="ortho-care.jpg" alt="교정치료" class="general-care-crop general-care-crop-ortho" />
+            <img src="general-ortho.jpg" alt="교정치료" class="general-care-image h-full w-full object-cover" />
             <span class="absolute bottom-5 left-5 z-10 rounded-full bg-[#173f38]/88 px-4 py-2 text-sm font-semibold text-white backdrop-blur">균형 잡힌 배열</span>
           </div>
           <div class="p-8">
@@ -337,7 +337,7 @@
         </article>
         <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
           <div class="specialty-image-wrap relative h-52 overflow-hidden bg-white">
-            <img src="aesthetic-care.jpg" alt="심미보철" class="general-care-crop general-care-crop-aesthetic" />
+            <img src="general-aesthetic.jpg" alt="심미보철" class="general-care-image h-full w-full object-cover" />
             <span class="absolute bottom-5 left-5 z-10 rounded-full bg-[#6a411a]/88 px-4 py-2 text-sm font-semibold text-white backdrop-blur">자연스러운 심미성</span>
           </div>
           <div class="p-8">
@@ -347,7 +347,7 @@
         </article>
         <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
           <div class="specialty-image-wrap relative h-52 overflow-hidden bg-white">
-            <img src="implant-care.jpg" alt="임플란트" class="general-care-crop general-care-crop-implant" />
+            <img src="general-implant.jpg" alt="임플란트" class="general-care-image h-full w-full object-cover" />
             <span class="absolute bottom-5 left-5 z-10 rounded-full bg-neutral-950/82 px-4 py-2 text-sm font-semibold text-white backdrop-blur">정밀한 식립 계획</span>
           </div>
           <div class="p-8">
@@ -357,7 +357,7 @@
         </article>
         <article class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
           <div class="specialty-image-wrap relative h-52 overflow-hidden bg-white">
-            <img src="tmj-care.jpg" alt="턱관절" class="general-care-crop general-care-crop-tmj" />
+            <img src="general-tmj.jpg" alt="턱관절" class="general-care-image h-full w-full object-cover" />
             <span class="absolute bottom-5 left-5 z-10 rounded-full bg-[#173f38]/88 px-4 py-2 text-sm font-semibold text-white backdrop-blur">턱의 균형과 기능</span>
           </div>
           <div class="p-8">
@@ -416,6 +416,7 @@
         <p class="mt-7 text-lg leading-8 text-white/68">
           오랜 기간 한 자리에서 쌓은 진료 경험을 바탕으로, 환자에게 꼭 맞는 치료 방향을 제안합니다.
         </p>
+        <p class="mt-20 hidden text-center text-sm italic leading-6 text-white/58" data-i18n="doctorEnglishCommunication"></p>
       </div>
       <div class="rounded-[2.4rem] bg-white p-5 text-neutral-950 md:p-8">
         <div class="grid gap-8 md:grid-cols-[.85fr_1.15fr] md:items-center">
@@ -613,7 +614,8 @@
         philosophyTitle: "과장하지 않고,<br />필요한 치료를 정확하게",
         generalTitle: "기본 진료도<br />기준 있게 봅니다",
         specialtyTitle: "이우주치과의<br />전문진료",
-        doctorTitle: "대표원장이<br />처음부터 끝까지"
+        doctorTitle: "대표원장이<br />처음부터 끝까지",
+        doctorEnglishCommunication: ""
       },
       en: {
         navPhilosophy: "Philosophy",
@@ -631,7 +633,8 @@
         philosophyTitle: "No exaggeration<br />only the treatment you need",
         generalTitle: "General care<br />with clear standards",
         specialtyTitle: "Signature care<br />at Lee Woo Joo Dental",
-        doctorTitle: "Led by one director<br />from start to finish"
+        doctorTitle: "Led by one director<br />from start to finish",
+        doctorEnglishCommunication: "Consultation is available in Korean and English."
       },
       zh: {
         navPhilosophy: "诊疗理念",
@@ -649,7 +652,8 @@
         philosophyTitle: "不夸大<br />准确提供所需治疗",
         generalTitle: "基础诊疗<br />也有清晰标准",
         specialtyTitle: "Lee Woo Joo牙科的<br />特色诊疗",
-        doctorTitle: "院长亲自负责<br />从开始到结束"
+        doctorTitle: "院长亲自负责<br />从开始到结束",
+        doctorEnglishCommunication: "可使用韩语和英语沟通。"
       }
     };
 
@@ -811,7 +815,7 @@
         zh: "同时关注种植体周围炎症、牙槽骨状态和牙周病带来的不适，并兼顾美观与功能恢复。"
       },
       "오랜 기간 한 자리에서 쌓은 진료 경험을 바탕으로, 환자에게 꼭 맞는 치료 방향을 제안합니다.": {
-        en: "Based on years of experience in one place, we suggest treatment directions that fit each patient.",
+        en: "Based on years of experiences, we suggest treatment directions that fit each patient.",
         zh: "基于长期在同一地区积累的诊疗经验，为患者提出合适的治疗方向。"
       },
       "이우주 원장": {
@@ -993,7 +997,10 @@
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
       document.querySelectorAll("[data-i18n]").forEach((element) => {
         const key = element.dataset.i18n;
-        if (copy[key]) element.innerHTML = copy[key];
+        if (Object.prototype.hasOwnProperty.call(copy, key)) {
+          element.innerHTML = copy[key];
+          element.classList.toggle("hidden", key === "doctorEnglishCommunication" && !copy[key]);
+        }
       });
       document.querySelectorAll("body *").forEach((element) => {
         if (element.closest("[data-i18n]")) return;
