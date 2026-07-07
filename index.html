@@ -13,9 +13,12 @@
     }
     .glass { background: rgba(255,255,255,0.78); backdrop-filter: blur(18px); }
     .brand-logo {
-      background: rgba(255,255,255,0.95);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+      background: #fff;
+      border: 1px solid rgba(255,255,255,0.62);
+      border-radius: 1.15rem;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
       flex: 0 0 auto;
+      overflow: hidden;
     }
     .site-nav {
       white-space: nowrap;
@@ -195,7 +198,7 @@
       </div>
     </div>
     <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-2.5 lg:px-8">
-      <a href="#home" class="brand-logo flex items-center rounded-full px-4 py-2.5 ring-1 ring-white/30" aria-label="이우주치과 홈">
+      <a href="#home" class="brand-logo flex items-center px-3.5 py-2" aria-label="이우주치과 홈">
         <img src="logo.png" alt="이우주치과 로고" class="h-[58px] w-auto md:h-[67px]" />
       </a>
       <nav class="site-nav hidden items-center gap-7 text-[23px] font-semibold text-white md:flex">
@@ -240,13 +243,16 @@
         <div class="grid gap-4 sm:grid-cols-2">
           <div class="rounded-[1.6rem] bg-white p-7 text-neutral-950 shadow-xl shadow-black/10 ring-1 ring-black/5 md:p-8">
             <div class="text-sm font-semibold tracking-[0.18em] text-neutral-500">SINCE</div>
-            <div class="mt-3 text-6xl font-bold leading-none tracking-[-0.07em] text-neutral-950 md:text-7xl">12년+</div>
+            <div class="mt-3 text-6xl font-bold leading-none tracking-[-0.07em] text-neutral-950 md:text-7xl" data-i18n="heroYears">12년+</div>
             <p class="mt-4 text-base font-medium leading-7 text-neutral-700">지역에서 꾸준히 운영해온 진료 경험</p>
           </div>
-          <div class="rounded-[1.6rem] bg-[#03C75A] p-7 text-white shadow-xl shadow-black/15 md:p-8">
-            <div class="text-sm font-semibold tracking-[0.18em] text-white/82">NAVER REVIEW</div>
-            <div class="mt-3 text-6xl font-bold leading-none tracking-[-0.07em] md:text-7xl">108개</div>
-            <p class="mt-4 text-base font-medium leading-7 text-white/92">심미 보철, 교정에서 최고 만족도로 소문난 병원</p>
+          <div class="rounded-[1.6rem] bg-[#03C75A] p-7 text-center text-white shadow-xl shadow-black/15 md:p-8">
+            <div class="text-sm font-semibold tracking-[0.18em] text-white/82" data-i18n="heroComplexLabel">심미 복합 치료 케이스</div>
+            <div class="mt-3 flex h-[8rem] flex-col items-center justify-center leading-none md:h-[8.6rem]">
+              <div class="text-[3.9rem] font-bold tracking-[-0.06em] md:text-[4.35rem]" data-i18n="heroComplexNumber">1000</div>
+              <div class="mt-1 text-[4rem] font-bold leading-none md:text-[4.45rem]" data-i18n="heroComplexPlus">+</div>
+            </div>
+            <p class="mt-6 text-base font-medium leading-7 text-white/92" data-i18n="heroComplexDesc">교정·심미보철·임플란트를 통합한 고난도 심미 치료</p>
           </div>
           <div class="rounded-[1.6rem] bg-white p-6 text-neutral-900 shadow-xl shadow-black/10 ring-1 ring-black/5 sm:col-span-2">
             <div class="text-sm font-semibold text-neutral-500">주요 진료</div>
@@ -614,6 +620,11 @@
         heroBadge: "12년 이상, 진료로 쌓아온 신뢰",
         heroTitle: "오래 다닐 수 있는 치과<br />결국, 진료가 말합니다",
         heroDesc: "이우주치과는 교정, 심미보철, 임플란트 진료를 중심으로 환자에게 필요한 치료를 정직하게 설명하고, 오래 안정적으로 유지되는 결과를 목표로 합니다.",
+        heroYears: "12년+",
+        heroComplexLabel: "심미 복합 치료 케이스",
+        heroComplexNumber: "1000",
+        heroComplexPlus: "+",
+        heroComplexDesc: "교정·심미보철·임플란트를 통합한 고난도 심미 치료",
         bookLong: "네이버 예약하기",
         viewCare: "진료 분야 보기",
         philosophyTitle: "과장하지 않고,<br />필요한 치료를 정확하게",
@@ -631,8 +642,13 @@
         navLocation: "Location",
         bookShort: "Book on Naver",
         heroBadge: "Trusted through 12+ years of care",
-        heroTitle: "A dental clinic you can keep coming back to<br />because treatment speaks for itself",
+        heroTitle: "A clinic you can trust,<br />where treatment speaks for itself",
         heroDesc: "Lee Woo Joo Dental Clinic focuses on orthodontics, aesthetic prosthetics, and implant treatment with honest explanations and long-lasting, stable results.",
+        heroYears: "12+ years",
+        heroComplexLabel: "AESTHETIC FULL-COMPLEX CASES",
+        heroComplexNumber: "1000",
+        heroComplexPlus: "+",
+        heroComplexDesc: "Combined aesthetic cases involving implants, prosthetics, and orthodontics",
         bookLong: "Book on Naver",
         viewCare: "View Treatments",
         philosophyTitle: "Precision treatment<br />for your best smile",
@@ -652,6 +668,11 @@
         heroBadge: "12年以上，以诊疗累积信任",
         heroTitle: "值得长期信赖的牙科<br />最终由诊疗来说话",
         heroDesc: "Lee Woo Joo牙科以正畸、美学修复、种植治疗为中心，诚实说明患者所需治疗，并追求长期稳定的治疗结果。",
+        heroYears: "12年以上",
+        heroComplexLabel: "综合美学病例",
+        heroComplexNumber: "1000",
+        heroComplexPlus: "+",
+        heroComplexDesc: "结合种植、美学修复和正畸的综合美学病例",
         bookLong: "Naver预约",
         viewCare: "查看诊疗项目",
         philosophyTitle: "不夸大<br />准确提供所需治疗",
@@ -824,7 +845,7 @@
         zh: "根据长期积累的诊疗经验，为患者提出合适的治疗方向。"
       },
       "이우주 원장": {
-        en: "Director Lee Woo Joo",
+        en: "Lee Woo Joo, D.D.S.",
         zh: "李宇宙院长"
       },
       "통합치과전문의": {
