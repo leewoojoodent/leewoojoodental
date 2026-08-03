@@ -1,0 +1,68 @@
+name: Run hero background update
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  update-hero:
+    if: github.event.issue.title == 'Run hero background update'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract image and update hero
+        shell: python
+        run: |
+          from pathlib import Path
+          import base64
+
+          source = Path('.github/workflows/apply-hero-background.yml').read_text(encoding='utf-8')
+          marker = "cat > hero-image.b64 <<'EOF_IMAGE'"
+          start = source.index(marker) + len(marker)
+          end = source.index('\nEOF_IMAGE', start)
+          encoded = ''.join(source[start:end].split())
+          Path('hero-leewoojoo-bg.jpg').write_bytes(base64.b64decode(encoded))
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          old = """    .hero-bg {
+      background:
+        linear-gradient(rgba(10, 18, 28, 0.58), rgba(10, 18, 28, 0.68)),
+        url('intro-hero.jpg') center/cover no-repeat;
+    }"""
+          new = """    .hero-bg {
+      background:
+        linear-gradient(90deg, rgba(6, 18, 21, 0.70) 0%, rgba(6, 18, 21, 0.44) 42%, rgba(6, 18, 21, 0.10) 72%, rgba(6, 18, 21, 0.03) 100%),
+        url('hero-leewoojoo-bg.jpg') center/cover no-repeat;
+    }"""
+
+          if old not in text:
+              raise SystemExit('Existing hero background block was not found')
+          text = text.replace(old, new, 1)
+
+          mobile_old = """    @media (max-width: 767px) {
+      #general-care {"""
+          mobile_new = """    @media (max-width: 767px) {
+      .hero-bg {
+        background-position: 64% center;
+      }
+      #general-care {"""
+          if mobile_old not in text:
+              raise SystemExit('Mobile media block was not found')
+          text = text.replace(mobile_old, mobile_new, 1)
+
+          path.write_text(text, encoding='utf-8')
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html hero-leewoojoo-bg.jpg
+          git commit -m "Use clinic reception image for homepage hero"
+          git push
