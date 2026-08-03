@@ -1,0 +1,82 @@
+name: Apply floating booking button
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-floating-booking.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Apply focused header and booking updates
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("index.html")
+          text = path.read_text(encoding="utf-8")
+
+          def replace_exact(old: str, new: str, expected: int = 1) -> None:
+              global text
+              actual = text.count(old)
+              if actual != expected:
+                  raise RuntimeError(f"Expected {expected} occurrence(s), found {actual}: {old[:100]!r}")
+              text = text.replace(old, new)
+
+          # Slightly enlarge the logo and menu text from the previous compact version.
+          replace_exact(
+              '        <img src="logo.png" alt="이우주치과 로고" class="h-[48px] w-auto md:h-[54px]" />',
+              '        <img src="logo.png" alt="이우주치과 로고" class="h-[52px] w-auto md:h-[60px]" />',
+          )
+          replace_exact(
+              '      <nav class="site-nav hidden items-center gap-5 text-[18px] font-semibold text-white md:flex">',
+              '      <nav class="site-nav hidden items-center gap-6 text-[20px] font-semibold text-white md:flex">',
+          )
+
+          # Remove the booking button from the header.
+          header_booking = '''      <div class="flex items-center gap-2">
+        <a href="https://naver.me/GbDLIRZB" target="_blank" class="rounded-full bg-[#03C75A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#02b350]" data-i18n="bookShort">
+          네이버 예약
+        </a>
+      </div>
+'''
+          replace_exact(header_booking, "")
+
+          # Add a floating bottom-left booking button that follows scrolling.
+          header_end = '''  </header>
+
+  <!-- Hero -->
+'''
+          floating_button = '''  </header>
+
+  <a href="https://naver.me/GbDLIRZB" target="_blank" rel="noopener noreferrer"
+     class="fixed bottom-4 left-4 z-[60] inline-flex items-center gap-2 rounded-full bg-[#03C75A] px-4 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(0,0,0,0.24)] ring-1 ring-white/35 transition hover:-translate-y-0.5 hover:bg-[#02b350] md:bottom-8 md:left-8 md:px-5 md:py-3.5 md:text-base"
+     aria-label="네이버 예약" data-i18n="bookShort">
+    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white text-base font-black text-[#03C75A]">N</span>
+    네이버 예약
+  </a>
+
+  <!-- Hero -->
+'''
+          replace_exact(header_end, floating_button)
+
+          path.write_text(text, encoding="utf-8")
+
+      - name: Commit homepage update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Move booking button to floating corner"
+          git push
