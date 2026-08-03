@@ -1,0 +1,96 @@
+name: Apply review and blog links
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-review-blog-links.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Update review card
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("index.html")
+          text = path.read_text(encoding="utf-8")
+
+          old = '''        <div class="rounded-[2rem] bg-[#f7f5f1] p-7 shadow-sm ring-1 ring-black/5">
+          <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+            <div>
+              <div class="inline-flex rounded-full bg-[#03C75A] px-4 py-2 text-sm font-semibold text-white">NAVER PLACE</div>
+              <p class="mt-4 text-5xl font-semibold tracking-[-0.06em] text-neutral-950">108</p>
+              <p class="mt-1 font-medium text-neutral-600">방문자 리뷰</p>
+            </div>
+            <a href="https://naver.me/GbDLIRZB" target="_blank" class="inline-flex items-center justify-center rounded-full bg-neutral-950 px-7 py-4 font-semibold text-white transition hover:bg-neutral-800">
+              네이버 리뷰 보기
+            </a>
+          </div>
+        </div>
+'''
+
+          new = '''        <div class="rounded-[2rem] bg-[#f7f5f1] p-7 shadow-sm ring-1 ring-black/5 md:p-8">
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-flex rounded-full bg-[#03C75A] px-4 py-2 text-sm font-semibold text-white">NAVER PLACE</span>
+            <span class="inline-flex rounded-full bg-[#173f38] px-4 py-2 text-sm font-semibold text-white">BLOG CASES</span>
+          </div>
+          <h3 class="mt-5 text-2xl font-semibold tracking-[-0.04em] text-neutral-950">리뷰와 실제 치료 사례를 함께 확인해보세요.</h3>
+          <p class="mt-3 leading-7 text-neutral-600">네이버 플레이스의 방문자 리뷰와 블로그에 정리한 실제 치료 과정 및 설명을 확인할 수 있습니다.</p>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a href="https://naver.me/GbDLIRZB" target="_blank" rel="noopener noreferrer" class="inline-flex flex-1 items-center justify-center rounded-full bg-neutral-950 px-6 py-4 font-semibold text-white transition hover:bg-neutral-800">
+              네이버 리뷰 보기
+            </a>
+            <a href="https://blog.naver.com/leewjdent" target="_blank" rel="noopener noreferrer" class="inline-flex flex-1 items-center justify-center rounded-full bg-[#173f38] px-6 py-4 font-semibold text-white transition hover:bg-[#0f302a]">
+              블로그 치료 사례 보기
+            </a>
+          </div>
+        </div>
+'''
+
+          if text.count(old) != 1:
+              raise RuntimeError(f"Expected one review card block, found {text.count(old)}")
+          text = text.replace(old, new)
+
+          marker = '''      "네이버 리뷰 보기": {
+        en: "View Naver Reviews",
+        zh: "查看Naver评价"
+      },
+'''
+          addition = marker + '''      "리뷰와 실제 치료 사례를 함께 확인해보세요.": {
+        en: "View reviews and real treatment cases together.",
+        zh: "同时查看评价与真实治疗案例。"
+      },
+      "네이버 플레이스의 방문자 리뷰와 블로그에 정리한 실제 치료 과정 및 설명을 확인할 수 있습니다.": {
+        en: "View visitor reviews on Naver Place along with real treatment processes and explanations shared on our blog.",
+        zh: "可查看Naver Place访客评价，以及博客中整理的真实治疗过程与说明。"
+      },
+      "블로그 치료 사례 보기": {
+        en: "View Blog Treatment Cases",
+        zh: "查看博客治疗案例"
+      },
+'''
+          if text.count(marker) != 1:
+              raise RuntimeError(f"Expected one translation marker, found {text.count(marker)}")
+          text = text.replace(marker, addition)
+
+          path.write_text(text, encoding="utf-8")
+
+      - name: Commit homepage update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Add blog treatment cases link to review section"
+          git push
