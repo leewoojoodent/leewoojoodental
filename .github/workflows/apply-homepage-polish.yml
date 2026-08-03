@@ -1,0 +1,115 @@
+name: Apply homepage polish
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-homepage-polish.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Apply focused homepage updates
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("index.html")
+          text = path.read_text(encoding="utf-8")
+
+          def replace_exact(old: str, new: str, expected: int = 1) -> None:
+              global text
+              actual = text.count(old)
+              if actual != expected:
+                  raise RuntimeError(f"Expected {expected} occurrence(s), found {actual}: {old[:80]!r}")
+              text = text.replace(old, new)
+
+          # Header: reduce visual weight without changing menu labels or structure.
+          replace_exact(
+              "      border-radius: 1.15rem;\n      box-shadow: 0 8px 18px rgba(0,0,0,0.12);",
+              "      border-radius: 0.95rem;\n      box-shadow: 0 4px 12px rgba(0,0,0,0.10);",
+          )
+          replace_exact(
+              '    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-2.5 lg:px-8">',
+              '    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 lg:px-8">',
+          )
+          replace_exact(
+              '      <a href="#home" class="brand-logo flex items-center px-3.5 py-2" aria-label="이우주치과 홈">',
+              '      <a href="#home" class="brand-logo flex items-center px-2.5 py-1.5" aria-label="이우주치과 홈">',
+          )
+          replace_exact(
+              '        <img src="logo.png" alt="이우주치과 로고" class="h-[58px] w-auto md:h-[67px]" />',
+              '        <img src="logo.png" alt="이우주치과 로고" class="h-[48px] w-auto md:h-[54px]" />',
+          )
+          replace_exact(
+              '      <nav class="site-nav hidden items-center gap-7 text-[23px] font-semibold text-white md:flex">',
+              '      <nav class="site-nav hidden items-center gap-5 text-[18px] font-semibold text-white md:flex">',
+          )
+
+          # Korean mobile hero copy: match the stronger desktop message.
+          replace_exact(
+              "최고의 아름다움과<br />건강을 선사합니다.",
+              "오래 다닐 수 있는 치과<br />결국, 진료가 말합니다",
+              expected=2,
+          )
+
+          # Tighten section spacing while preserving the existing layout and content order.
+          replace_exact(
+              '<section id="philosophy" class="bg-white py-28 md:py-36">',
+              '<section id="philosophy" class="bg-white py-24 md:py-28">',
+          )
+          replace_exact(
+              '<section id="general-care" class="soft-bg py-10 md:py-36">',
+              '<section id="general-care" class="soft-bg py-10 md:py-28">',
+          )
+          replace_exact(
+              '<section id="signature-care" class="signature-bg py-28 text-white md:py-36">',
+              '<section id="signature-care" class="signature-bg py-24 text-white md:py-28">',
+          )
+          replace_exact(
+              '<section id="doctor" class="bg-[#111827] py-8 text-white md:py-36">',
+              '<section id="doctor" class="bg-[#111827] py-8 text-white md:py-28">',
+          )
+          replace_exact(
+              '<section id="review" class="bg-white py-28 md:py-36">',
+              '<section id="review" class="bg-white py-24 md:py-28">',
+          )
+          replace_exact(
+              '<section class="bg-[#f7f5f1] px-5 py-24">',
+              '<section class="bg-[#f7f5f1] px-5 py-20">',
+          )
+          replace_exact(
+              '<section id="location" class="bg-white py-24">',
+              '<section id="location" class="bg-white py-20">',
+          )
+
+          # Remove selected review quotations; retain the Naver Place count and direct review link.
+          grid_start_marker = '      <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">'
+          grid_start = text.find(grid_start_marker)
+          if grid_start == -1:
+              raise RuntimeError("Review quote grid start marker not found")
+          review_end_marker = '    </div>\n  </section>\n\n  <!-- CTA -->'
+          review_end = text.find(review_end_marker, grid_start)
+          if review_end == -1:
+              raise RuntimeError("Review section end marker not found")
+          text = text[:grid_start] + text[review_end:]
+
+          path.write_text(text, encoding="utf-8")
+
+      - name: Commit homepage update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Polish homepage layout and review section"
+          git push
