@@ -15,8 +15,8 @@
     .brand-logo {
       background: #fff;
       border: 1px solid rgba(255,255,255,0.62);
-      border-radius: 1.15rem;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      border-radius: 0.95rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
       flex: 0 0 auto;
       overflow: hidden;
     }
@@ -208,11 +208,11 @@
         <button type="button" data-lang="ko" aria-label="한국어" class="is-active inline-flex items-center justify-center gap-1">KR <span class="lang-flag"><img src="flag-kr.jpg" alt="" /></span></button>
       </div>
     </div>
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-2.5 lg:px-8">
-      <a href="#home" class="brand-logo flex items-center px-3.5 py-2" aria-label="이우주치과 홈">
-        <img src="logo.png" alt="이우주치과 로고" class="h-[58px] w-auto md:h-[67px]" />
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 lg:px-8">
+      <a href="#home" class="brand-logo flex items-center px-2.5 py-1.5" aria-label="이우주치과 홈">
+        <img src="logo.png" alt="이우주치과 로고" class="h-[48px] w-auto md:h-[54px]" />
       </a>
-      <nav class="site-nav hidden items-center gap-7 text-[23px] font-semibold text-white md:flex">
+      <nav class="site-nav hidden items-center gap-5 text-[18px] font-semibold text-white md:flex">
         <a href="#philosophy" class="drop-shadow-sm transition hover:text-[#d7c9ad]" data-i18n="navPhilosophy">진료철학</a>
         <a href="#general-care" class="drop-shadow-sm transition hover:text-[#d7c9ad]" data-i18n="navGeneral">일반진료</a>
         <a href="#signature-care" class="drop-shadow-sm transition hover:text-[#d7c9ad]" data-i18n="navSpecialty">전문진료</a>
@@ -236,7 +236,7 @@
           12년 이상, 진료로 쌓아온 신뢰
         </p>
         <h1 class="mobile-hero-title fade-up-delay max-w-4xl text-[2.85rem] font-semibold leading-[1.04]" data-i18n="mobileHeroTitle">
-          최고의 아름다움과<br />건강을 선사합니다.
+          오래 다닐 수 있는 치과<br />결국, 진료가 말합니다
         </h1>
         <h1 class="desktop-hero-title fade-up-delay max-w-4xl text-5xl font-semibold leading-[1.08] md:text-7xl" data-i18n="heroTitle">
           오래 다닐 수 있는 치과<br />결국, 진료가 말합니다
@@ -303,7 +303,7 @@
   </section>
 
   <!-- Philosophy -->
-  <section id="philosophy" class="bg-white py-28 md:py-36">
+  <section id="philosophy" class="bg-white py-24 md:py-28">
     <div class="mx-auto max-w-7xl px-5 lg:px-8">
       <div class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
         <div class="max-w-3xl">
@@ -351,7 +351,7 @@
   </section>
 
   <!-- General Care -->
-  <section id="general-care" class="soft-bg py-10 md:py-36">
+  <section id="general-care" class="soft-bg py-10 md:py-28">
     <div class="mx-auto max-w-7xl px-5 lg:px-8">
       <div class="flex min-h-[calc(100svh-152px)] flex-col justify-center md:hidden">
         <p class="mb-2 text-xs font-semibold tracking-[0.22em] text-neutral-500">CARE MENU</p>
@@ -442,7 +442,7 @@
   </section>
 
   <!-- Signature Care -->
-  <section id="signature-care" class="signature-bg py-28 text-white md:py-36">
+  <section id="signature-care" class="signature-bg py-24 text-white md:py-28">
     <div class="mx-auto max-w-7xl px-5 lg:px-8">
       <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
         <div>
@@ -480,7 +480,7 @@
   </section>
 
   <!-- Doctor -->
-  <section id="doctor" class="bg-[#111827] py-8 text-white md:py-36">
+  <section id="doctor" class="bg-[#111827] py-8 text-white md:py-28">
     <div class="mx-auto grid min-h-[calc(100svh-72px)] max-w-7xl items-center gap-4 px-5 md:min-h-0 md:gap-12 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
       <div>
         <p class="mb-2 text-[11px] font-semibold tracking-[0.28em] text-white/38 md:mb-4 md:text-sm">DOCTOR</p>
@@ -519,7 +519,7 @@
   </section>
 
   <!-- Review -->
-  <section id="review" class="bg-white py-28 md:py-36">
+  <section id="review" class="bg-white py-24 md:py-28">
     <div class="mx-auto max-w-7xl px-5 lg:px-8">
       <div class="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:items-end">
         <div>
@@ -543,61 +543,11 @@
         </div>
       </div>
 
-      <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        <article class="rounded-[1.5rem] bg-white p-7 shadow-sm ring-1 ring-black/5">
-          <div class="flex items-center justify-between">
-            <span class="rounded-full bg-[#03C75A]/10 px-3 py-1 text-sm font-semibold text-[#03A64A]">네이버 리뷰</span>
-            <span class="text-[#03C75A]">★★★★★</span>
-          </div>
-          <p class="mt-5 text-xl font-semibold leading-8 tracking-[-0.035em] text-neutral-950">“치과 공포가 있었는데, 설명을 자세히 해주셔서 편안하게 진료받았어요.”</p>
-          <p class="mt-5 text-sm text-neutral-500">친절한 설명 · 편안한 진료</p>
-        </article>
-        <article class="rounded-[1.5rem] bg-white p-7 shadow-sm ring-1 ring-black/5">
-          <div class="flex items-center justify-between">
-            <span class="rounded-full bg-[#03C75A]/10 px-3 py-1 text-sm font-semibold text-[#03A64A]">네이버 리뷰</span>
-            <span class="text-[#03C75A]">★★★★★</span>
-          </div>
-          <p class="mt-5 text-xl font-semibold leading-8 tracking-[-0.035em] text-neutral-950">“교정 상담을 자세하게 해주시고, 치료 방향을 이해하기 쉽게 설명해주셨어요.”</p>
-          <p class="mt-5 text-sm text-neutral-500">교정 상담 · 자세한 설명</p>
-        </article>
-        <article class="rounded-[1.5rem] bg-white p-7 shadow-sm ring-1 ring-black/5">
-          <div class="flex items-center justify-between">
-            <span class="rounded-full bg-[#03C75A]/10 px-3 py-1 text-sm font-semibold text-[#03A64A]">네이버 리뷰</span>
-            <span class="text-[#03C75A]">★★★★★</span>
-          </div>
-          <p class="mt-5 text-xl font-semibold leading-8 tracking-[-0.035em] text-neutral-950">“멀리 있어도 생각나서 다시 오게 되는 곳이에요. 주변에 추천하고 싶습니다.”</p>
-          <p class="mt-5 text-sm text-neutral-500">재방문 · 추천</p>
-        </article>
-        <article class="rounded-[1.5rem] bg-white p-7 shadow-sm ring-1 ring-black/5">
-          <div class="flex items-center justify-between">
-            <span class="rounded-full bg-[#03C75A]/10 px-3 py-1 text-sm font-semibold text-[#03A64A]">네이버 리뷰</span>
-            <span class="text-[#03C75A]">★★★★★</span>
-          </div>
-          <p class="mt-5 text-xl font-semibold leading-8 tracking-[-0.035em] text-neutral-950">“교정 중에도 불편한 부분을 세심하게 봐주시고, 필요한 설명을 잘 해주셔서 안심됐어요.”</p>
-          <p class="mt-5 text-sm text-neutral-500">교정 관리 · 세심함</p>
-        </article>
-        <article class="rounded-[1.5rem] bg-white p-7 shadow-sm ring-1 ring-black/5">
-          <div class="flex items-center justify-between">
-            <span class="rounded-full bg-[#03C75A]/10 px-3 py-1 text-sm font-semibold text-[#03A64A]">네이버 리뷰</span>
-            <span class="text-[#03C75A]">★★★★★</span>
-          </div>
-          <p class="mt-5 text-xl font-semibold leading-8 tracking-[-0.035em] text-neutral-950">“여러 곳에서 교정 상담을 받아봤는데, 가장 진심 있게 봐주신다는 느낌을 받았습니다.”</p>
-          <p class="mt-5 text-sm text-neutral-500">교정 비교 상담 · 신뢰</p>
-        </article>
-        <article class="rounded-[1.5rem] bg-[#173f38] p-7 text-white shadow-sm">
-          <div class="flex items-center justify-between">
-            <span class="rounded-full bg-white/12 px-3 py-1 text-sm font-semibold text-white">REVIEW KEYWORDS</span>
-            <span class="text-[#7be6a4]">★★★★★</span>
-          </div>
-          <p class="mt-5 text-xl font-semibold leading-8 tracking-[-0.035em]">교정 상담이 자세해요 · 설명을 잘해줘요 · 꼼꼼해요 · 편안해요 · 추천해요</p>
-          <p class="mt-5 text-sm text-white/58">네이버 방문자 리뷰에서 반복되는 긍정 키워드</p>
-        </article>
-      </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="bg-[#f7f5f1] px-5 py-24">
+  <section class="bg-[#f7f5f1] px-5 py-20">
     <div class="mx-auto max-w-6xl rounded-[2.6rem] bg-neutral-950 px-6 py-16 text-center text-white md:px-12 md:py-24">
       <h2 class="text-4xl font-semibold tracking-[-0.055em] md:text-6xl">치료를 미루고 있다면,<br />먼저 정확히 상담받아보세요.</h2>
       <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/68">
@@ -610,7 +560,7 @@
   </section>
 
   <!-- Location -->
-  <section id="location" class="bg-white py-24">
+  <section id="location" class="bg-white py-20">
     <div class="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[.95fr_1.05fr] lg:px-8">
       <div>
         <p class="mb-4 text-sm font-semibold tracking-[0.24em] text-[#087b84]">LOCATION</p>
@@ -682,7 +632,7 @@
         navLocation: "오시는 길",
         bookShort: "네이버 예약",
         heroBadge: "12년 이상, 진료로 쌓아온 신뢰",
-        mobileHeroTitle: "최고의 아름다움과<br />건강을 선사합니다.",
+        mobileHeroTitle: "오래 다닐 수 있는 치과<br />결국, 진료가 말합니다",
         heroTitle: "오래 다닐 수 있는 치과<br />결국, 진료가 말합니다",
         heroDesc: "이우주치과는 교정, 심미보철, 임플란트 진료를 중심으로 환자에게 필요한 치료를 정직하게 설명하고, 오래 안정적으로 유지되는 결과를 목표로 합니다.",
         heroYears: "12년+",
