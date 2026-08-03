@@ -80,3 +80,5 @@ jobs:
           fi
           git commit -m "Move booking button to floating corner"
           git push
+
+# Triggered after initial workflow registration.
